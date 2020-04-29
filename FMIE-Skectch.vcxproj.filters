@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="头文件\common">
+      <UniqueIdentifier>{116bc841-7c26-430f-a48e-661694840b1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\common">
+      <UniqueIdentifier>{b5352bef-778c-464b-849c-15ea96aa9b42}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\view">
+      <UniqueIdentifier>{815700e5-8dc8-4f3b-99f5-3723f12fd1eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\view">
+      <UniqueIdentifier>{921bb643-1aa8-406e-a37d-171d25f32887}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\framework">
+      <UniqueIdentifier>{5eebee76-cd5a-4430-900a-4932d2c97def}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\framework">
+      <UniqueIdentifier>{2700409c-a48d-4450-92fc-2402f8def1f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\framework\filterLayer">
+      <UniqueIdentifier>{f791f9c8-ebb1-4d41-a694-84f2a32d34ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\framework\IdentificationLayer">
+      <UniqueIdentifier>{5886ab1e-c6d8-44fc-a265-d3f6d825b099}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\framework\filterLayer">
+      <UniqueIdentifier>{67176d94-21fa-44e9-a7a7-5b81f1ec87f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\framework\IdentifycationLayer">
+      <UniqueIdentifier>{19418eea-f719-481f-9ce9-6146c12f45dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\framework\io">
+      <UniqueIdentifier>{30d6ac90-b14a-4f6b-bec5-d907634eb0be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\framework\io">
+      <UniqueIdentifier>{733a6a8e-87a0-4896-83dc-9e3ebef36728}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FMIE-SkectchDlg.h">
+      <Filter>头文件\view</Filter>
+    </ClInclude>
+    <ClInclude Include="FMIE-Skectch.h">
+      <Filter>头文件\view</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>头文件\view</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件\view</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>头文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketReader.h">
+      <Filter>头文件\framework\io</Filter>
+    </ClInclude>
+    <ClInclude Include="MiniFlowFilter.h">
+      <Filter>头文件\framework\filterLayer</Filter>
+    </ClInclude>
+    <ClInclude Include="LargeFlowCounter.h">
+      <Filter>头文件\framework\IdentificationLayer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="FMIE-Skectch.cpp">
+      <Filter>源文件\view</Filter>
+    </ClCompile>
+    <ClCompile Include="FMIE-SkectchDlg.cpp">
+      <Filter>源文件\view</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketReader.cpp">
+      <Filter>源文件\framework\io</Filter>
+    </ClCompile>
+    <ClCompile Include="MiniFlowFilter.cpp">
+      <Filter>源文件\framework\filterLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="LargeFlowCounter.cpp">
+      <Filter>源文件\framework\IdentifycationLayer</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FMIESkectch.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\FMIESkectch.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\FMIE-Skectch.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
