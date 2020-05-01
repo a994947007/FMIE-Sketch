@@ -78,6 +78,18 @@
     <ClInclude Include="LargeFlowCounter.h">
       <Filter>头文件\framework\IdentificationLayer</Filter>
     </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>头文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>头文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultWriter.h">
+      <Filter>头文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>头文件\common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FMIE-Skectch.cpp">
@@ -97,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="LargeFlowCounter.cpp">
       <Filter>源文件\framework\IdentifycationLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="ResultWriter.cpp">
+      <Filter>源文件\common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
