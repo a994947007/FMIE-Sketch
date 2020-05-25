@@ -186,9 +186,13 @@
   <ItemGroup>
     <ClInclude Include="common.h" />
     <ClInclude Include="config.h" />
+    <ClInclude Include="CUSketch.h" />
     <ClInclude Include="FMIE-Skectch.h" />
     <ClInclude Include="FMIE-SkectchDlg.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="H3Function.h" />
+    <ClInclude Include="HashFunctions.h" />
+    <ClInclude Include="HSNPacketReader.h" />
     <ClInclude Include="LargeFlowCounter.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="MiniFlowFilter.h" />
@@ -197,10 +201,15 @@
     <ClInclude Include="Resource.h" />
     <ClInclude Include="ResultWriter.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="UserConfig.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CUSketch.cpp" />
     <ClCompile Include="FMIE-Skectch.cpp" />
     <ClCompile Include="FMIE-SkectchDlg.cpp" />
+    <ClCompile Include="H3Function.cpp" />
+    <ClCompile Include="HashFunctions.cpp" />
+    <ClCompile Include="HSNPacketReader.cpp" />
     <ClCompile Include="LargeFlowCounter.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="MiniFlowFilter.cpp" />

@@ -84,11 +84,26 @@
     <ClInclude Include="common.h">
       <Filter>头文件\common</Filter>
     </ClInclude>
-    <ClInclude Include="ResultWriter.h">
-      <Filter>头文件\common</Filter>
-    </ClInclude>
     <ClInclude Include="config.h">
       <Filter>头文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="HSNPacketReader.h">
+      <Filter>头文件\framework\io</Filter>
+    </ClInclude>
+    <ClInclude Include="UserConfig.h">
+      <Filter>头文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="ResultWriter.h">
+      <Filter>头文件\framework\io</Filter>
+    </ClInclude>
+    <ClInclude Include="CUSketch.h">
+      <Filter>头文件\framework\filterLayer</Filter>
+    </ClInclude>
+    <ClInclude Include="HashFunctions.h">
+      <Filter>头文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="H3Function.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -113,8 +128,20 @@
     <ClCompile Include="Log.cpp">
       <Filter>源文件\common</Filter>
     </ClCompile>
+    <ClCompile Include="HSNPacketReader.cpp">
+      <Filter>源文件\framework\io</Filter>
+    </ClCompile>
     <ClCompile Include="ResultWriter.cpp">
+      <Filter>源文件\framework\io</Filter>
+    </ClCompile>
+    <ClCompile Include="CUSketch.cpp">
+      <Filter>源文件\framework\filterLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="HashFunctions.cpp">
       <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="H3Function.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

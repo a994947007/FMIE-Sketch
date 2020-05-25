@@ -9,6 +9,7 @@ void Log::add(string content)
     ofileAgain.open(logPath, ios::app);
     ofileAgain << content << endl;
     ofileAgain.close();
+    ofileAgain.clear();
 }
 
 void Log::error(string content)
@@ -17,4 +18,5 @@ void Log::error(string content)
     ofileAgain.open(logErrorPath, ios::app);
     ofileAgain << content << endl;
     ofileAgain.close();
+    ofileAgain.clear();
 }
