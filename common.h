@@ -202,6 +202,11 @@ public:
 	{
 	}
 
+	inline EndID(const EndID& rhs) {
+		this->ip = rhs.ip;
+		this->port = rhs.port;
+	}
+
 	inline EndID& operator=(const EndID& rhs) {
 		this->ip = rhs.ip;
 		this->port = rhs.port;
@@ -260,6 +265,17 @@ public:
 		return *this;
 	}
 
+	//判断是否为空
+	inline bool isEmpty() {
+		return ip == 0 && port == 0;
+	}
+	
+	//重置当前项
+	inline void reset() {
+		ip = 0;
+		port = 0;
+	}
+
 	~EndID()
 	{
 	}
@@ -290,6 +306,13 @@ typedef struct FlowID
 	{
 	}
 
+	//拷贝构造函数
+	inline FlowID(const FlowID & rhs) {
+		this->proto = rhs.proto;
+		this->src = rhs.src;
+		this->dst = rhs.dst;
+	}
+
 	inline FlowID& operator=(const FlowID& rhs) {
 		this->proto = rhs.proto;
 		this->src = rhs.src;
@@ -314,6 +337,16 @@ typedef struct FlowID
 		src = src & rhs.src;
 		dst = dst & rhs.dst;
 		return *this;
+	}
+
+	inline bool isEmpty() {
+		return src.isEmpty() && dst.isEmpty() && proto == 0;
+	}
+
+	inline void reset() {
+		src.reset();
+		dst.reset();
+		proto = 0;
 	}
 
 	//将流关键字转化为字节流

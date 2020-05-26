@@ -103,7 +103,7 @@
       <Filter>头文件\common</Filter>
     </ClInclude>
     <ClInclude Include="H3Function.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +141,7 @@
       <Filter>源文件\common</Filter>
     </ClCompile>
     <ClCompile Include="H3Function.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
