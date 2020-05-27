@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -194,6 +194,7 @@
     <ClInclude Include="HashFunctions.h" />
     <ClInclude Include="HSNPacketReader.h" />
     <ClInclude Include="LargeFlowCounter.h" />
+    <ClInclude Include="LargeFlowIdentifier.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="MiniFlowFilter.h" />
     <ClInclude Include="PacketReader.h" />
@@ -211,6 +212,7 @@
     <ClCompile Include="HashFunctions.cpp" />
     <ClCompile Include="HSNPacketReader.cpp" />
     <ClCompile Include="LargeFlowCounter.cpp" />
+    <ClCompile Include="LargeFlowIdentifier.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="MiniFlowFilter.cpp" />
     <ClCompile Include="PacketReader.cpp" />

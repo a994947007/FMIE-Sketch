@@ -105,6 +105,9 @@
     <ClInclude Include="H3Function.h">
       <Filter>头文件\common</Filter>
     </ClInclude>
+    <ClInclude Include="LargeFlowIdentifier.h">
+      <Filter>头文件\framework\IdentificationLayer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FMIE-Skectch.cpp">
@@ -142,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="H3Function.cpp">
       <Filter>源文件\common</Filter>
+    </ClCompile>
+    <ClCompile Include="LargeFlowIdentifier.cpp">
+      <Filter>源文件\framework\IdentifycationLayer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
