@@ -108,6 +108,9 @@
     <ClInclude Include="LargeFlowIdentifier.h">
       <Filter>头文件\framework\IdentificationLayer</Filter>
     </ClInclude>
+    <ClInclude Include="FMIESketch.h">
+      <Filter>头文件\framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FMIE-Skectch.cpp">
@@ -148,6 +151,9 @@
     </ClCompile>
     <ClCompile Include="LargeFlowIdentifier.cpp">
       <Filter>源文件\framework\IdentifycationLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="FMIESketch.cpp">
+      <Filter>源文件\framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

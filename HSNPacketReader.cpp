@@ -2,14 +2,12 @@
 #include "HSNPacketReader.h"
 #include "Log.h"
 
-HSNPacketReader::HSNPacketReader(ifstream * ifFile)
+HSNPacketReader::HSNPacketReader(ifstream * ifFile):PacketReader(ifFile)
 {
-	m_fileStream.push_back(ifFile);
 }
 
-HSNPacketReader::HSNPacketReader(const string src)
+HSNPacketReader::HSNPacketReader(const string src):PacketReader(src)
 {
-	addFile(src);
 }
 
 HSNPacketReader::HSNPacketReader()
@@ -18,7 +16,6 @@ HSNPacketReader::HSNPacketReader()
 
 HSNPacketReader::~HSNPacketReader()
 {
-	close();
 }
 
 /**读取一个数据包
@@ -153,34 +150,4 @@ bool HSNPacketReader::readPacket(ifstream* ifFile, Packet& pkt)
 	}
 
 	return true;
-}
-
-
-
-/**添加一个数据包文件
-* @param 文件路径
-*/
-void HSNPacketReader::addFile(const string src)
-{
-	ifstream* ifFile = new ifstream;
-	ifFile->open(src, ios_base::in | ios_base::binary);
-	if (ifFile->fail()) {
-		Log::error("数据包读取文件打开失败!");
-		return;
-	}
-	m_fileStream.push_back(ifFile);
-}
-
-/** 关闭文件流 
-*/
-void HSNPacketReader::close() {
-	//清空文件流
-	while (!m_fileStream.empty()) {
-		ifstream* f = m_fileStream.front();
-		f->close();
-		f->clear();
-		m_fileStream.pop_front();
-		delete f;
-		f = NULL;
-	}
 }

@@ -6,6 +6,12 @@ class LargeFlowIdentifier
 private:	
 	LargeFlowCounter * counter;
 public:
+	/**	大流统计器默认构造器
+	* @param1 cuckoo表的行数
+	* @param2 cuckoo表的列数
+	* @param3 最多踢除次数
+	* @param4 判定为大流的阈值
+	*/
 	LargeFlowIdentifier(const ULONG row_num, const ULONG col_num, const ULONG MAX_KICKOUT_NUM, const double voteThreshold);
 	~LargeFlowIdentifier();
 	

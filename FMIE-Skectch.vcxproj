@@ -189,6 +189,7 @@
     <ClInclude Include="CUSketch.h" />
     <ClInclude Include="FMIE-Skectch.h" />
     <ClInclude Include="FMIE-SkectchDlg.h" />
+    <ClInclude Include="FMIESketch.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="H3Function.h" />
     <ClInclude Include="HashFunctions.h" />
@@ -208,6 +209,7 @@
     <ClCompile Include="CUSketch.cpp" />
     <ClCompile Include="FMIE-Skectch.cpp" />
     <ClCompile Include="FMIE-SkectchDlg.cpp" />
+    <ClCompile Include="FMIESketch.cpp" />
     <ClCompile Include="H3Function.cpp" />
     <ClCompile Include="HashFunctions.cpp" />
     <ClCompile Include="HSNPacketReader.cpp" />

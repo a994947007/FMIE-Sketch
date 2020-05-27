@@ -12,7 +12,7 @@ MiniFlowFilter::~MiniFlowFilter() {
 	}
 }
 
-bool MiniFlowFilter::filter(FlowID & fid)
+bool MiniFlowFilter::filter(const FlowID & fid)
 {
 	ULONG n = sketch->query(fid);
 	if (n >= threshold) {
