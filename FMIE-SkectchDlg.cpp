@@ -7,11 +7,11 @@
 #include "FMIE-Skectch.h"
 #include "FMIE-SkectchDlg.h"
 #include "afxdialogex.h"
+#include "FMIESketch.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
 
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
 
@@ -65,6 +65,9 @@ BEGIN_MESSAGE_MAP(CFMIESkectchDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_SELECT_SRC_FILE, &CFMIESkectchDlg::OnBnClickedSelectSrcFile)
+	ON_BN_CLICKED(IDC_BUTTON2, &CFMIESkectchDlg::OnBnClickedButton2)
+	ON_BN_CLICKED(IDOK, &CFMIESkectchDlg::OnBnClickedOk)
 END_MESSAGE_MAP()
 
 
@@ -153,3 +156,96 @@ HCURSOR CFMIESkectchDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CFMIESkectchDlg::OnBnClickedSelectSrcFile()
+{
+	CString strFile = _T("");
+	DWORD dwFlags = OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_ALLOWMULTISELECT;
+	CFileDialog dlgFile(TRUE, _T("cap"), NULL, dwFlags, _T("Ip trace(*.hsn)|*.hsn||"), NULL);
+	if (dlgFile.DoModal() != IDOK)
+	{
+		return;
+	}
+
+	POSITION pos = dlgFile.GetStartPosition();
+	while (NULL != pos) {
+		CString strFileName = dlgFile.GetNextPathName(pos);
+		string fileName = CT2A(strFileName);
+		m_configInfo.fileList.push_back(fileName);
+
+		CString oldMessage;
+		GetDlgItem(IDC_MSG_AREA)->GetWindowTextW(oldMessage);
+		GetDlgItem(IDC_MSG_AREA)->SetWindowTextW(oldMessage + strFileName + "\r\n");
+	}
+}
+
+
+void CFMIESkectchDlg::OnBnClickedButton2()
+{
+	TCHAR szBuffer[MAX_PATH] = { 0 };
+	BROWSEINFO bi;
+	ZeroMemory(&bi, sizeof(bi));
+	bi.hwndOwner = NULL;
+	bi.pszDisplayName = szBuffer;
+	bi.lpszTitle = _T("选择需要保存的路径");
+	bi.ulFlags = BIF_RETURNFSANCESTORS;
+	LPITEMIDLIST idl = SHBrowseForFolder(&bi);
+	if (NULL == idl) {
+		return;
+	}
+	SHGetPathFromIDList(idl, szBuffer);
+	string resultPath = CT2A(CString(szBuffer));
+	m_configInfo.resultPath = resultPath;
+}
+
+
+void CFMIESkectchDlg::OnBnClickedOk()
+{
+	UpdateData(TRUE);
+	if (m_configInfo.fileList.empty())
+	{
+		CString msg("您还没有选择数据源文件！");
+		AfxMessageBox(msg);
+		return;
+	}
+	if (m_configInfo.resultPath.empty()) {
+		CString msg("您还没有选择结果保存目录！");
+		AfxMessageBox(msg);
+		return;
+	}
+
+	m_configInfo.CUSketch_countersNum = getValueByControID<ULONG>(IDC_COUNTER_NUM);
+	m_configInfo.CUSketch_countersSize = pow(2, getValueByControID<ULONG>(IDC_COUNTER_SIZE));
+	m_configInfo.MiniFlowFilter_threshold = getValueByControID<ULONG>(IDC_MINI_FLOW_THRESHOLD);
+	m_configInfo.LargeFlowCounter_ROW_NUM = pow(2, getValueByControID<ULONG>(IDC_CUCKOO_ROW));
+	m_configInfo.LargeFlowCounter_COL_NUM = getValueByControID<ULONG>(IDC_CUCKOO_COL);
+	m_configInfo.LargeFlowCounter_MAX_KICKOUT_NUM = getValueByControID<ULONG>(IDC_MAX_KICK_NUM);
+	m_configInfo.LargeFlowCounter_voteThreshold = getValueByControID<double>(IDC_LARGE_FLOW_THRESHOLD);
+	GetDlgItem(IDOK)->EnableWindow(FALSE);
+
+	FMIESketch sketch(m_configInfo);
+	sketch.run();
+
+	CString msg("统计完毕！");
+	AfxMessageBox(msg);
+	GetDlgItem(IDOK)->EnableWindow(TRUE);
+}
+
+
+template<typename T>
+inline T CFMIESkectchDlg::getValueByControID(ULONG controID)
+{
+	CString m_str;
+	GetDlgItem(controID)->GetWindowTextW(m_str);
+	CStringA m_strA(m_str);
+	if (std::is_same<T, ULONG>::value)
+	{
+		UINT value = atoi(m_strA);
+	}
+	else if((std::is_same<T, double>::value))
+	{
+		double value = atof(m_strA);
+	}
+	return T();
+}

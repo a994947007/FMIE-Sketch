@@ -28,6 +28,11 @@ public:
 	*/
 	void add(const Packet &);
 
+	/**
+	* 开始统计
+	*/
+	void run();
+
 private:
 	/** 计算流关键字fid，五元组
 	* @param1 协议类型

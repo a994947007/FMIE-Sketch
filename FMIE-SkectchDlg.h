@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include "UserConfig.h"
+
 
 // CFMIESkectchDlg 对话框
 class CFMIESkectchDlg : public CDialogEx
@@ -31,4 +33,17 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+
+protected:
+	UserConfig m_configInfo;
+
+private:
+	template <typename T>  
+	inline T getValueByControID(ULONG controID);
+
+public:
+	afx_msg void OnBnClickedSelectSrcFile();
+	afx_msg void OnBnClickedButton2();
+	afx_msg void OnBnClickedOk();
 };
+

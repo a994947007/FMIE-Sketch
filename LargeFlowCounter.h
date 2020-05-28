@@ -36,6 +36,7 @@ private:
 			fid.reset();
 			pVote = 0;
 			fVote = 0;
+			return true;
 		}
 	}Entry;
 

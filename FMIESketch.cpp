@@ -60,3 +60,13 @@ void FMIESketch::add(const Packet & pkt)
 		identifier->counting(fid);
 	}
 }
+
+void FMIESketch::run()
+{
+	Packet pkt;
+	while (reader->readPacket(pkt)) {
+		add(pkt);
+	}
+	//1、默认参数设置
+	//2、写出结果
+}
