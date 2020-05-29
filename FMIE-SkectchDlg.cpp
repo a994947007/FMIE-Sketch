@@ -104,6 +104,16 @@ BOOL CFMIESkectchDlg::OnInitDialog()
 
 	// TODO: 在此添加额外的初始化代码
 
+	//设置默认参数
+	setDefaultValue(IDC_COUNTER_NUM, _T("4"));
+	setDefaultValue(IDC_COUNTER_SIZE, _T("14"));
+	setDefaultValue(IDC_MINI_FLOW_THRESHOLD, _T("64"));
+	setDefaultValue(IDC_CUCKOO_ROW, _T("10"));
+	setDefaultValue(IDC_CUCKOO_COL, _T("4"));
+	setDefaultValue(IDC_MAX_KICK_NUM, _T("2"));
+	setDefaultValue(IDC_LARGE_FLOW_THRESHOLD, _T("8.0"));
+	setDefaultValue(IDC_PACKET_NUM_LIMIT, _T("6"));
+
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -157,6 +167,11 @@ HCURSOR CFMIESkectchDlg::OnQueryDragIcon()
 }
 
 
+
+inline void CFMIESkectchDlg::setDefaultValue(const ULONG controID, LPCTSTR value)
+{
+	((CEdit*)GetDlgItem(controID))->SetWindowTextW(value);
+}
 
 void CFMIESkectchDlg::OnBnClickedSelectSrcFile()
 {
@@ -222,6 +237,7 @@ void CFMIESkectchDlg::OnBnClickedOk()
 	m_configInfo.LargeFlowCounter_COL_NUM = getValueByControID<ULONG>(IDC_CUCKOO_COL);
 	m_configInfo.LargeFlowCounter_MAX_KICKOUT_NUM = getValueByControID<ULONG>(IDC_MAX_KICK_NUM);
 	m_configInfo.LargeFlowCounter_voteThreshold = getValueByControID<double>(IDC_LARGE_FLOW_THRESHOLD);
+	m_configInfo.readNumlimit = pow(10,getValueByControID<ULONG>(IDC_PACKET_NUM_LIMIT));
 	GetDlgItem(IDOK)->EnableWindow(FALSE);
 
 	FMIESketch sketch(m_configInfo);
@@ -234,7 +250,7 @@ void CFMIESkectchDlg::OnBnClickedOk()
 
 
 template<typename T>
-inline T CFMIESkectchDlg::getValueByControID(ULONG controID)
+inline T CFMIESkectchDlg::getValueByControID(const ULONG controID)
 {
 	CString m_str;
 	GetDlgItem(controID)->GetWindowTextW(m_str);
@@ -242,10 +258,12 @@ inline T CFMIESkectchDlg::getValueByControID(ULONG controID)
 	if (std::is_same<T, ULONG>::value)
 	{
 		UINT value = atoi(m_strA);
+		return value;
 	}
 	else if((std::is_same<T, double>::value))
 	{
 		double value = atof(m_strA);
+		return value;
 	}
 	return T();
 }

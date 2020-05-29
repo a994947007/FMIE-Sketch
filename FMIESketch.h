@@ -16,6 +16,7 @@ private:
 	LargeFlowIdentifier * identifier;
 	PacketReader * reader;
 	ResultWriter * writer;
+	ULONG readNumLimit;	//限制读取数据包个数
 public:
 	/** FMIESketch默认构造器
 	* @param1 用户配置项
@@ -25,8 +26,9 @@ public:
 
 	/** 添加一个数据包到Sketch
 	* @param 数据包信息
+	* @return 统计完毕返回true
 	*/
-	void add(const Packet &);
+	bool add(const Packet &);
 
 	/**
 	* 开始统计

@@ -23,7 +23,7 @@ CUSketch::~CUSketch()
 	if (func != NULL) delete [] func;
 }
 
-void CUSketch::insert(const FlowID & fid)
+void CUSketch::add(const FlowID & fid)
 {
 	ULONG min = ULONG_MAX;
 	ULONG min_i = 0;

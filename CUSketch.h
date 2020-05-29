@@ -21,11 +21,16 @@ public:
 	/** 插入一条流到CUSketch中
 	* @param fid 流标识符(五元组)
 	*/
-	void insert(const FlowID &);
+	void add(const FlowID &);
 
 	/** 查询一条流在所有计数器数组中的最小计数
 	* @param fid 流标识符(五元组)
 	*/
 	ULONG query(const FlowID&);
+
+	/** 获取CUSketch中的小流数量
+	* @return 小流数量
+	*/
+	ULONG getMiniFlowNum();
 };
 

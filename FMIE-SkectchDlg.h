@@ -39,7 +39,8 @@ protected:
 
 private:
 	template <typename T>  
-	inline T getValueByControID(ULONG controID);
+	inline T getValueByControID(const ULONG controID);
+	inline void setDefaultValue(const ULONG controID, LPCTSTR value);
 
 public:
 	afx_msg void OnBnClickedSelectSrcFile();

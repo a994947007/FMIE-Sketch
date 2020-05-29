@@ -20,5 +20,10 @@ public:
 	* @return 过滤状态，成功为true，失败为false
 	*/
 	bool filter(const FlowID &);
+
+	/** 获取小流过滤层中的小流数量
+	* @return 小流数量
+	*/
+	ULONG getMiniFlowNum();
 };
 

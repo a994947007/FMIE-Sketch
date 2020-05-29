@@ -18,5 +18,15 @@ public:
 	/** 统计大流
 	*/
 	void counting(const FlowID & fid);
+
+	/** 获取大流统计器中的小流数量
+	* @return 小流数量
+	*/
+	ULONG getMiniFlowNum();
+
+	/** 获取大流统计器中的大流数量
+	* @return 大流数量
+	*/
+	ULONG getLargeFlowNum();
 };
 

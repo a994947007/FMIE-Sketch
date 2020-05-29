@@ -10,12 +10,6 @@ private:
 		ULONG fVote;	//反票数
 		Entry():pVote(0),fVote(0) {}
 
-		Entry(const Entry& entry) {
-			fid = entry.fid;
-			pVote = entry.pVote;
-			fVote = entry.fVote;
-		}
-
 		Entry(const FlowID & fid):fid(fid), pVote(0), fVote(0){}
 
 		//重载=运算符，拷贝函数
@@ -81,5 +75,14 @@ private:
 	* @return 到达重置返回true，否则返回false
 	*/
 	bool checkAndReset(Entry & entry);
+	/** 获取大流统计器中的小流数量
+	* @return 小流数量
+	*/
+	ULONG getMiniFlowNum();
+
+	/** 获取大流统计器中的大流数量
+	* @return 大流数量
+	*/
+	ULONG getLargeFlowNum();
 };
 

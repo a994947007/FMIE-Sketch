@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "FMIESketch.h"
 
-FMIESketch::FMIESketch(const UserConfig & info)
+FMIESketch::FMIESketch(const UserConfig & info):readNumLimit(info.readNumlimit)
 {
 	init(info);
 }
@@ -51,7 +51,7 @@ void FMIESketch::init(const UserConfig & info)
 	writer = new ResultWriter(info.resultPath);
 }
 
-void FMIESketch::add(const Packet & pkt)
+bool FMIESketch::add(const Packet & pkt)
 {
 	ASSERT(pkt.proto == PROTO_TCP || pkt.proto == PROTO_UDP);
 	const FlowID fid = calcFlowID(pkt.proto, pkt.src, pkt.dst);
@@ -59,13 +59,16 @@ void FMIESketch::add(const Packet & pkt)
 	if (!flag) {	
 		identifier->counting(fid);
 	}
+	return true;
 }
 
 void FMIESketch::run()
 {
 	Packet pkt;
-	while (reader->readPacket(pkt)) {
-		add(pkt);
+	ULONG countNum = 0;
+	while (countNum < readNumLimit && reader->readPacket(pkt)) {
+		bool flag = add(pkt);
+		if (flag)countNum++;
 	}
 	//1、默认参数设置
 	//2、写出结果

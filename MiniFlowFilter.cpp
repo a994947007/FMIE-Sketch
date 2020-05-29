@@ -16,10 +16,10 @@ bool MiniFlowFilter::filter(const FlowID & fid)
 {
 	ULONG n = sketch->query(fid);
 	if (n >= threshold) {
-		return true;
+		return false;
 	}
 	else {
-		sketch->insert(fid);
-		return false;
+		sketch->add(fid);
+		return true;
 	}
 }

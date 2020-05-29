@@ -5,7 +5,7 @@
 LargeFlowCounter::LargeFlowCounter(const ULONG row_num,const ULONG col_num, const ULONG MAX_KICKOUT_NUM, const double voteThreshold):ROW_NUM(row_num),COL_NUM(col_num),voteThreshold(voteThreshold),curNum(0), MAX_KICKOUT_NUM(MAX_KICKOUT_NUM)
 {
 	entryTable = new Entry*[row_num];
-	for (ULONG i = 0; i < col_num; i++) {
+	for (ULONG i = 0; i < row_num; i++) {
 		entryTable[i] = new Entry[col_num];
 	}
 }
