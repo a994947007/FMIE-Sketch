@@ -9,8 +9,9 @@ ResultWriter::ResultWriter()
     ofFile->open(resultPath, ios::app);
 }
 
-ResultWriter::ResultWriter(const string filePath):filePath(filePath)
+ResultWriter::ResultWriter(const string filePath)
 {
+    this->filePath = filePath + "/result.txt";
     ofFile = new ofstream;
     ofFile->open(filePath, ios::app);
 }

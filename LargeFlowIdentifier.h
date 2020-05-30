@@ -12,21 +12,16 @@ public:
 	* @param3 最多踢除次数
 	* @param4 判定为大流的阈值
 	*/
-	LargeFlowIdentifier(const ULONG row_num, const ULONG col_num, const ULONG MAX_KICKOUT_NUM, const double voteThreshold);
+	LargeFlowIdentifier(const ULONG row_num, const ULONG col_num, const ULONG MAX_KICKOUT_NUM, const double voteThreshold,const ULONG largeFlowNumThreshold);
 	~LargeFlowIdentifier();
 	
 	/** 统计大流
 	*/
 	void counting(const FlowID & fid);
 
-	/** 获取大流统计器中的小流数量
-	* @return 小流数量
+	/** 获取大流集合
+	* @return 大流集合
 	*/
-	ULONG getMiniFlowNum();
-
-	/** 获取大流统计器中的大流数量
-	* @return 大流数量
-	*/
-	ULONG getLargeFlowNum();
+	void getLargeFlowList(list<FlowID*> &);
 };
 

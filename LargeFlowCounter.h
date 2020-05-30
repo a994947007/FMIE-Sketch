@@ -1,6 +1,8 @@
 #pragma once
 #include "Log.h"
 #include "common.h"
+#include <list>
+
 class LargeFlowCounter
 {
 private:
@@ -38,15 +40,18 @@ private:
 	Entry ** entryTable;
 	//行（桶）数，列（槽）数
 	ULONG ROW_NUM, COL_NUM;	
-	//已统计项数
+	//当前表中存在的流数
 	ULONG curNum;
 	//反/正阈值，用于踢除
 	double voteThreshold;
 	//最多踢除次数
 	ULONG MAX_KICKOUT_NUM;
+	//判定为大流的阈值
+	ULONG largeFlowThreshold;
 
 public:
-	LargeFlowCounter(const ULONG row_num, const ULONG col_num,const ULONG MAX_KICKOUT_NUM, const double voteThreshold);
+	LargeFlowCounter(const ULONG row_num, const ULONG col_num,const ULONG MAX_KICKOUT_NUM, const double voteThreshold,const ULONG);
+	virtual ~LargeFlowCounter();
 	/** 添加一条流到当前统计器中
 	* @param1 流标识符，五元组
 	* @return 如果没有踢出多余的记录为true，否则为false
@@ -65,6 +70,7 @@ public:
 	*/
 	bool incr(const FlowID& fid);
 
+	void getLargeFlowList(list<FlowID*> &);
 private:
 	/** 根据fid在表中查找记录
 	* @param1 fid，五元组
@@ -75,14 +81,5 @@ private:
 	* @return 到达重置返回true，否则返回false
 	*/
 	bool checkAndReset(Entry & entry);
-	/** 获取大流统计器中的小流数量
-	* @return 小流数量
-	*/
-	ULONG getMiniFlowNum();
-
-	/** 获取大流统计器中的大流数量
-	* @return 大流数量
-	*/
-	ULONG getLargeFlowNum();
 };
 

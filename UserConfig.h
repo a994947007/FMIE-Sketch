@@ -15,6 +15,7 @@ typedef struct UserConfig{
 	ULONG LargeFlowCounter_ROW_NUM;			//大流统计器的Cuckoo表行数
 	ULONG LargeFlowCounter_COL_NUM;			//大流统计器的Cuckoo表列数
 	ULONG LargeFlowCounter_MAX_KICKOUT_NUM;	//大流统计器的Cuckoo表最多踢除次数
-	double LargeFlowCounter_voteThreshold;	//大流统计器判定为大流的反/正阈值
+	double LargeFlowCounter_voteThreshold;	//大流统计器淘汰的反/正阈值
 	ULONG readNumlimit;	//限制读取数据包个数
+	ULONG LargeFlow_threshold;		//判定为大流的真实值
 }UserConfig, * pUserConfig;

@@ -8,6 +8,7 @@
 #include "MiniFlowFilter.h"
 #include "LargeFlowIdentifier.h"
 #include "UserConfig.h"
+#include "RealCounter.h"
 
 class FMIESketch
 {
@@ -16,7 +17,9 @@ private:
 	LargeFlowIdentifier * identifier;
 	PacketReader * reader;
 	ResultWriter * writer;
+	RealCounter * realCounter;
 	ULONG readNumLimit;	//限制读取数据包个数
+	ULONG largeFlowNumThreshold; //判定为大流的阈值
 public:
 	/** FMIESketch默认构造器
 	* @param1 用户配置项

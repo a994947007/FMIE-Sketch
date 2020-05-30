@@ -27,10 +27,5 @@ public:
 	* @param fid 流标识符(五元组)
 	*/
 	ULONG query(const FlowID&);
-
-	/** 获取CUSketch中的小流数量
-	* @return 小流数量
-	*/
-	ULONG getMiniFlowNum();
 };
 

@@ -367,18 +367,22 @@ typedef struct FlowID
 }FlowID, * PFlowID;
 
 //带有节点的链表遍历
-#define LINKEDLIST_FOR_EACH(PCUR,PHEAD) \
+#define CIRCULAR_LINKEDLIST_FOR_EACH(PCUR,PHEAD) \
 	for ((PCUR) = (PHEAD)->next;(PCUR) != (PHEAD);(PCUR)=(PCUR)->next) \
 
 //双向链表中，删除某个结点
-#define LINKEDLIST_DEL_NODE(PNODE) \
+#define CIRCULAR_LINKEDLIST_DEL_NODE(PNODE) \
 	(PNODE)->prior->next = (PNODE)->next;	\
 	(PNODE)->next->prior = (PNODE)->prior;	\
 	(PNODE)->prior = (PNODE)->next = NULL;	\
 
 //双向链表中，在cur结点前增加某个结点  
-#define LINKEDLIST_INSERT_NODE(PCUR,PNODE) \
+#define CIRCULAR_LINKEDLIST_INSERT_NODE(PCUR,PNODE) \
 	(PNODE)->next = (PCUR);	\
 	(PNODE)->prior = (PCUR)->prior;	\
 	(PCUR)->prior->next = (PNODE);	\
 	(PCUR)->prior = (PNODE);	\
+
+//带头结点单向不循环链表遍历
+#define SINGLY_LINKED_LIST_FOR_EACH(PCUR,PHEAD) \
+	for ((PCUR) = (PHEAD) -> next; (PCUR) != (NULL);(PCUR)=(PCUR)->next) \

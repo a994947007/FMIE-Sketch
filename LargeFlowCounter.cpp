@@ -2,12 +2,20 @@
 #include "HashFunctions.h"
 #include "LargeFlowCounter.h"
 
-LargeFlowCounter::LargeFlowCounter(const ULONG row_num,const ULONG col_num, const ULONG MAX_KICKOUT_NUM, const double voteThreshold):ROW_NUM(row_num),COL_NUM(col_num),voteThreshold(voteThreshold),curNum(0), MAX_KICKOUT_NUM(MAX_KICKOUT_NUM)
+LargeFlowCounter::LargeFlowCounter(const ULONG row_num, const ULONG col_num, const ULONG MAX_KICKOUT_NUM, const double voteThreshold, const ULONG largeFlowThreshold) :ROW_NUM(row_num), COL_NUM(col_num), voteThreshold(voteThreshold), curNum(0), MAX_KICKOUT_NUM(MAX_KICKOUT_NUM), largeFlowThreshold(largeFlowThreshold)
 {
 	entryTable = new Entry*[row_num];
 	for (ULONG i = 0; i < row_num; i++) {
 		entryTable[i] = new Entry[col_num];
 	}
+}
+
+LargeFlowCounter::~LargeFlowCounter()
+{
+	for (ULONG i = 0; i < ROW_NUM; i++) {
+		delete[] entryTable[i];
+	}
+	delete[] entryTable;
 }
 
 bool LargeFlowCounter::insert(const FlowID& fid)
@@ -16,6 +24,7 @@ bool LargeFlowCounter::insert(const FlowID& fid)
 	((FlowID*)&fid)->ToData(buf);
 	ULONG sign = OAAT(buf, FID_LEN);
 	ULONG row1 = BOB(buf, FID_LEN) % ROW_NUM;
+	curNum++;
 	
 	LargeFlowCounter::Entry ce;
 	ce.fid = fid;
@@ -52,12 +61,14 @@ bool LargeFlowCounter::insert(const FlowID& fid)
 				entryTable[row1][i] = ce;
 				isInserted = true;
 			}
+			curNum--;
 		}
 		if (checkAndReset(entryTable[row2][i])) {
 			if (!isInserted) {
 				entryTable[row2][i] = ce;
 				isInserted = true;
 			}
+			curNum--;
 		}
 	}
 	if (isInserted) {
@@ -103,6 +114,7 @@ bool LargeFlowCounter::insert(const FlowID& fid)
 			}
 		}
 	}
+	curNum--;	//有一条溢出
 	return false;
 }
 
@@ -148,4 +160,15 @@ bool LargeFlowCounter::checkAndReset(Entry & entry)
 		return true;
 	}
 	return false;
+}
+
+void LargeFlowCounter::getLargeFlowList(list<FlowID *> & flowList)
+{
+	for (ULONG i = 0; i < ROW_NUM; i++) {
+		for (ULONG j = 0; j < COL_NUM; j++) {
+			if (entryTable[i][j].pVote >= largeFlowThreshold) {
+				flowList.push_back(&entryTable[i][j].fid);
+			}
+		}
+	}
 }

@@ -113,6 +113,7 @@ BOOL CFMIESkectchDlg::OnInitDialog()
 	setDefaultValue(IDC_MAX_KICK_NUM, _T("2"));
 	setDefaultValue(IDC_LARGE_FLOW_THRESHOLD, _T("8.0"));
 	setDefaultValue(IDC_PACKET_NUM_LIMIT, _T("6"));
+	setDefaultValue(IDC_LARGE_FLOWNUM_THRESHOLD, _T("80"));
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -224,11 +225,6 @@ void CFMIESkectchDlg::OnBnClickedOk()
 		AfxMessageBox(msg);
 		return;
 	}
-	if (m_configInfo.resultPath.empty()) {
-		CString msg("您还没有选择结果保存目录！");
-		AfxMessageBox(msg);
-		return;
-	}
 
 	m_configInfo.CUSketch_countersNum = getValueByControID<ULONG>(IDC_COUNTER_NUM);
 	m_configInfo.CUSketch_countersSize = pow(2, getValueByControID<ULONG>(IDC_COUNTER_SIZE));
@@ -238,6 +234,7 @@ void CFMIESkectchDlg::OnBnClickedOk()
 	m_configInfo.LargeFlowCounter_MAX_KICKOUT_NUM = getValueByControID<ULONG>(IDC_MAX_KICK_NUM);
 	m_configInfo.LargeFlowCounter_voteThreshold = getValueByControID<double>(IDC_LARGE_FLOW_THRESHOLD);
 	m_configInfo.readNumlimit = pow(10,getValueByControID<ULONG>(IDC_PACKET_NUM_LIMIT));
+	m_configInfo.LargeFlow_threshold = getValueByControID<ULONG>(IDC_LARGE_FLOWNUM_THRESHOLD);
 	GetDlgItem(IDOK)->EnableWindow(FALSE);
 
 	FMIESketch sketch(m_configInfo);
