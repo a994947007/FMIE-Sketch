@@ -105,15 +105,17 @@ BOOL CFMIESkectchDlg::OnInitDialog()
 	// TODO: 在此添加额外的初始化代码
 
 	//设置默认参数
-	setDefaultValue(IDC_COUNTER_NUM, _T("4"));
-	setDefaultValue(IDC_COUNTER_SIZE, _T("14"));
-	setDefaultValue(IDC_MINI_FLOW_THRESHOLD, _T("64"));
-	setDefaultValue(IDC_CUCKOO_ROW, _T("10"));
-	setDefaultValue(IDC_CUCKOO_COL, _T("4"));
-	setDefaultValue(IDC_MAX_KICK_NUM, _T("2"));
-	setDefaultValue(IDC_LARGE_FLOW_THRESHOLD, _T("8.0"));
 	setDefaultValue(IDC_PACKET_NUM_LIMIT, _T("6"));
-	setDefaultValue(IDC_LARGE_FLOWNUM_THRESHOLD, _T("80"));
+	setDefaultValue(IDC_FILTER_PKT_NUM, _T("1"));
+	setDefaultValue(IDC_IDENTIFY_PKT_NUM, _T("3"));
+	setDefaultValue(IDC_CUCKOO_ROW1, _T("10"));
+	setDefaultValue(IDC_CUCKOO_COL1, _T("4"));
+	setDefaultValue(IDC_CUCKOO_ROW2, _T("9"));
+	setDefaultValue(IDC_CUCKOO_COL2, _T("4"));
+	setDefaultValue(IDC_FILTER_SHRESHOLD, _T("16"));
+	setDefaultValue(IDC_IDENTIFY_ROW, _T("9"));
+	setDefaultValue(IDC_IDENTIFY_COL, _T("4"));
+	setDefaultValue(IDC_IDENTIFY_THRESHOLD, _T("5.0"));
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -225,7 +227,7 @@ void CFMIESkectchDlg::OnBnClickedOk()
 		AfxMessageBox(msg);
 		return;
 	}
-
+	/*
 	m_configInfo.CUSketch_countersNum = getValueByControID<ULONG>(IDC_COUNTER_NUM);
 	m_configInfo.CUSketch_countersSize = pow(2, getValueByControID<ULONG>(IDC_COUNTER_SIZE));
 	m_configInfo.MiniFlowFilter_threshold = getValueByControID<ULONG>(IDC_MINI_FLOW_THRESHOLD);
@@ -235,6 +237,7 @@ void CFMIESkectchDlg::OnBnClickedOk()
 	m_configInfo.LargeFlowCounter_voteThreshold = getValueByControID<double>(IDC_LARGE_FLOW_THRESHOLD);
 	m_configInfo.readNumlimit = pow(10,getValueByControID<ULONG>(IDC_PACKET_NUM_LIMIT));
 	m_configInfo.LargeFlow_threshold = getValueByControID<ULONG>(IDC_LARGE_FLOWNUM_THRESHOLD);
+	*/
 	GetDlgItem(IDOK)->EnableWindow(FALSE);
 
 	FMIESketch sketch(m_configInfo);

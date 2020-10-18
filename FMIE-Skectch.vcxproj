@@ -186,7 +186,9 @@
   <ItemGroup>
     <ClInclude Include="common.h" />
     <ClInclude Include="config.h" />
+    <ClInclude Include="CuckooFilter.h" />
     <ClInclude Include="CUSketch.h" />
+    <ClInclude Include="Filter.h" />
     <ClInclude Include="FMIE-Skectch.h" />
     <ClInclude Include="FMIE-SkectchDlg.h" />
     <ClInclude Include="FMIESketch.h" />
@@ -208,6 +210,7 @@
     <ClInclude Include="UserConfig.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CuckooFilter.cpp" />
     <ClCompile Include="CUSketch.cpp" />
     <ClCompile Include="FMIE-Skectch.cpp" />
     <ClCompile Include="FMIE-SkectchDlg.cpp" />

@@ -1,25 +1,22 @@
 #include "pch.h"
 #include "MiniFlowFilter.h"
 
-MiniFlowFilter::MiniFlowFilter(const ULONG countersNum, const ULONG countersSize, const ULONG threshold):threshold(threshold)
+MiniFlowFilter::MiniFlowFilter(Filter * filter)
 {
-	sketch = new CUSketch(countersNum, countersSize);
+	this->filter = filter;
 }
 
 MiniFlowFilter::~MiniFlowFilter() {
-	if (sketch != NULL) {
-		delete sketch;
+	if (this->filter != NULL) {
+		delete this->filter;
+		this->filter = NULL;
 	}
 }
 
-bool MiniFlowFilter::filter(const FlowID & fid)
+bool MiniFlowFilter::Filtering(const FlowID & fid,FlowID & result)
 {
-	ULONG n = sketch->query(fid);
-	if (n >= threshold) {
-		return false;
-	}
-	else {
-		sketch->add(fid);
-		return true;
+	bool flag = filter->Find(fid,result);
+	if (!flag) {
+		filter->Insert(fid);
 	}
 }

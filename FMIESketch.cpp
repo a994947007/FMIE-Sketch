@@ -56,6 +56,7 @@ void FMIESketch::init(const UserConfig & info)
 	writer = new ResultWriter(info.resultPath);
 	realCounter = new RealCounter(info.LargeFlow_threshold);
 }
+
 int n = 0;
 bool FMIESketch::add(const Packet & pkt)
 {
