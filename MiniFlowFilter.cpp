@@ -13,10 +13,16 @@ MiniFlowFilter::~MiniFlowFilter() {
 	}
 }
 
-bool MiniFlowFilter::Filtering(const FlowID & fid,FlowID & result)
+bool MiniFlowFilter::Filtering(const FlowID & fid)
 {
 	bool flag = filter->Find(fid,result);
 	if (!flag) {
 		filter->Insert(fid);
 	}
+	else {
+		if (!result.isEmpty()) {
+			return true;
+		}
+	}
+	return false;
 }

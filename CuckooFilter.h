@@ -1,8 +1,9 @@
 #pragma once
 
 #include "common.h"
+#include "Filter.h"
 
-class CuckooFilter
+class CuckooFilter:public Filter
 {
 protected:
 	typedef struct Entry {

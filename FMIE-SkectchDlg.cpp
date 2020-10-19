@@ -227,17 +227,18 @@ void CFMIESkectchDlg::OnBnClickedOk()
 		AfxMessageBox(msg);
 		return;
 	}
-	/*
-	m_configInfo.CUSketch_countersNum = getValueByControID<ULONG>(IDC_COUNTER_NUM);
-	m_configInfo.CUSketch_countersSize = pow(2, getValueByControID<ULONG>(IDC_COUNTER_SIZE));
-	m_configInfo.MiniFlowFilter_threshold = getValueByControID<ULONG>(IDC_MINI_FLOW_THRESHOLD);
-	m_configInfo.LargeFlowCounter_ROW_NUM = pow(2, getValueByControID<ULONG>(IDC_CUCKOO_ROW));
-	m_configInfo.LargeFlowCounter_COL_NUM = getValueByControID<ULONG>(IDC_CUCKOO_COL);
-	m_configInfo.LargeFlowCounter_MAX_KICKOUT_NUM = getValueByControID<ULONG>(IDC_MAX_KICK_NUM);
-	m_configInfo.LargeFlowCounter_voteThreshold = getValueByControID<double>(IDC_LARGE_FLOW_THRESHOLD);
-	m_configInfo.readNumlimit = pow(10,getValueByControID<ULONG>(IDC_PACKET_NUM_LIMIT));
-	m_configInfo.LargeFlow_threshold = getValueByControID<ULONG>(IDC_LARGE_FLOWNUM_THRESHOLD);
-	*/
+
+	m_configInfo.PACKET_NUM_LIMIT = pow(10, getValueByControID<ULONG>(IDC_PACKET_NUM_LIMIT));
+	m_configInfo.FILTER_PKT_NUM = getValueByControID<ULONG>(IDC_FILTER_PKT_NUM);
+	m_configInfo.IDENTIFY_PKT_NUM = getValueByControID<ULONG>(IDC_IDENTIFY_PKT_NUM);
+	m_configInfo.CUCKOO_ROW1 = pow(2, getValueByControID<ULONG>(IDC_CUCKOO_ROW1));
+	m_configInfo.CUCKOO_COL1 = getValueByControID<ULONG>(IDC_CUCKOO_COL1);
+	m_configInfo.CUCKOO_ROW2 = pow(2, getValueByControID<ULONG>(IDC_CUCKOO_ROW2));
+	m_configInfo.CUCKOO_COL2 = getValueByControID<ULONG>(IDC_CUCKOO_COL2);
+	m_configInfo.FILTER_SHRESHOLD = getValueByControID<ULONG>(IDC_FILTER_SHRESHOLD);
+	m_configInfo.IDENTIFY_ROW = pow(2, getValueByControID<ULONG>(IDC_IDENTIFY_ROW));
+	m_configInfo.IDENTIFY_COL = getValueByControID<ULONG>(IDC_IDENTIFY_COL);
+	m_configInfo.IDENTIFY_THRESHOLD = getValueByControID<double>(IDC_IDENTIFY_THRESHOLD);
 	GetDlgItem(IDOK)->EnableWindow(FALSE);
 
 	FMIESketch sketch(m_configInfo);
