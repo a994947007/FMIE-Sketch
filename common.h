@@ -22,6 +22,36 @@ static const long CACHE_TIMEOUT = 1;				// 缓存项超时间隔，单位：秒
 static const long SCAN_INTERVAL = 100 * 1000;		//超时扫描周期，单位：微秒
 static const long FLOW_TIMEOUT = 10;				//流超时间隔，单位：秒
 
+template <typename K, typename V>
+ class Pair {
+ public:
+	 K k;
+	 V v;
+
+ public:
+	 Pair(K k,V v) {
+		 this->k = k;
+		 this->v = v;
+	 }
+	 inline Pair operator=(const Pair& pair) {
+		 k = pair.k;
+		 v = pair.v;
+	 }
+	 inline bool operator==(const Pair& pair) {
+		 this->k == pair.k;
+		 this->v == pair.v;
+	 }
+	 inline bool operator!=(const Pair& pair) {
+		 return this->k != pair.k || this->v != pair.v;
+	 }
+	 inline K getKey() {
+		 return k;
+	 }
+	 inline V getValue() {
+		 return v;
+	 }
+};
+
 typedef struct Time {
 	long sec;	//秒
 	long usec;	//微秒

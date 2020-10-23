@@ -199,6 +199,7 @@
     <ClInclude Include="HSNPacketReader.h" />
     <ClInclude Include="LargeFlowCounter.h" />
     <ClInclude Include="LargeFlowIdentifier.h" />
+    <ClInclude Include="LFCounter.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="MiniFlowFilter.h" />
     <ClInclude Include="PacketReader.h" />

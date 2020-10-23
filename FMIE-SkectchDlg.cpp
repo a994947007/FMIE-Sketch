@@ -228,15 +228,15 @@ void CFMIESkectchDlg::OnBnClickedOk()
 		return;
 	}
 
-	m_configInfo.PACKET_NUM_LIMIT = pow(10, getValueByControID<ULONG>(IDC_PACKET_NUM_LIMIT));
+	m_configInfo.PACKET_NUM_LIMIT = (ULONG)pow(10, getValueByControID<ULONG>(IDC_PACKET_NUM_LIMIT));
 	m_configInfo.FILTER_PKT_NUM = getValueByControID<ULONG>(IDC_FILTER_PKT_NUM);
 	m_configInfo.IDENTIFY_PKT_NUM = getValueByControID<ULONG>(IDC_IDENTIFY_PKT_NUM);
-	m_configInfo.CUCKOO_ROW1 = pow(2, getValueByControID<ULONG>(IDC_CUCKOO_ROW1));
+	m_configInfo.CUCKOO_ROW1 = (ULONG)pow(2, getValueByControID<ULONG>(IDC_CUCKOO_ROW1));
 	m_configInfo.CUCKOO_COL1 = getValueByControID<ULONG>(IDC_CUCKOO_COL1);
-	m_configInfo.CUCKOO_ROW2 = pow(2, getValueByControID<ULONG>(IDC_CUCKOO_ROW2));
+	m_configInfo.CUCKOO_ROW2 = (ULONG)pow(2, getValueByControID<ULONG>(IDC_CUCKOO_ROW2));
 	m_configInfo.CUCKOO_COL2 = getValueByControID<ULONG>(IDC_CUCKOO_COL2);
 	m_configInfo.FILTER_SHRESHOLD = getValueByControID<ULONG>(IDC_FILTER_SHRESHOLD);
-	m_configInfo.IDENTIFY_ROW = pow(2, getValueByControID<ULONG>(IDC_IDENTIFY_ROW));
+	m_configInfo.IDENTIFY_ROW = (ULONG)pow(2, getValueByControID<ULONG>(IDC_IDENTIFY_ROW));
 	m_configInfo.IDENTIFY_COL = getValueByControID<ULONG>(IDC_IDENTIFY_COL);
 	m_configInfo.IDENTIFY_THRESHOLD = getValueByControID<double>(IDC_IDENTIFY_THRESHOLD);
 	GetDlgItem(IDOK)->EnableWindow(FALSE);

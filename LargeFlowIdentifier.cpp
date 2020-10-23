@@ -2,23 +2,27 @@
 #include "LargeFlowIdentifier.h"
 #include "UserConfig.h"
 
-LargeFlowIdentifier::LargeFlowIdentifier(const ULONG row_num, const ULONG col_num, const ULONG MAX_KICKOUT_NUM, const double voteThreshold,const ULONG largeFlowNumThreshold)
+LargeFlowIdentifier::LargeFlowIdentifier(LFCounter * lfCounter)
 {
-	counter = new LargeFlowCounter(row_num, col_num, MAX_KICKOUT_NUM, voteThreshold,largeFlowNumThreshold);
+	counter = lfCounter;
 }
 
 LargeFlowIdentifier::~LargeFlowIdentifier()
 {
 	if (counter != NULL) {
 		delete counter;
+		counter = 0;
 	}
 }
 
-void LargeFlowIdentifier::counting(const FlowID & fid)
+void LargeFlowIdentifier::insert(const FlowID & fid)
 {
-	if (!counter->incr(fid)) {
-		counter->insert(fid);
-	}
+	counter->insert(fid);
+}
+
+bool LargeFlowIdentifier::incr(const FlowID& fid)
+{
+	return counter->incr(fid);
 }
 
 void LargeFlowIdentifier::getLargeFlowList(list<FlowID*> & flowList)

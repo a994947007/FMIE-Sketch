@@ -129,6 +129,9 @@
     <ClInclude Include="Filter.h">
       <Filter>头文件\framework\filterLayer</Filter>
     </ClInclude>
+    <ClInclude Include="LFCounter.h">
+      <Filter>头文件\framework\IdentificationLayer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FMIE-Skectch.cpp">

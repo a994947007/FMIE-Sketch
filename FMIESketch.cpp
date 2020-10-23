@@ -5,6 +5,7 @@
 FMIESketch::FMIESketch(const UserConfig& info) :readNumLimit(info.PACKET_NUM_LIMIT),
 	filterFlowPercent((double)info.FILTER_PKT_NUM/info.FILTER_PKT_NUM + info.IDENTIFY_PKT_NUM)
 {
+	srand(unsigned(time(NULL)));
 	init(info);
 }
 
@@ -48,7 +49,8 @@ void FMIESketch::init(const UserConfig & info)
 	Filter* cuckooFilter = new CuckooFilter(info.CUCKOO_ROW1,info.CUCKOO_COL1,info.CUCKOO_ROW2,info.CUCKOO_COL2, KICK_OUT_NUM,info.FILTER_SHRESHOLD);
 	filter = new MiniFlowFilter(cuckooFilter);
 
-	identifier = new LargeFlowIdentifier(info.LargeFlowCounter_ROW_NUM, info.LargeFlowCounter_COL_NUM, info.LargeFlowCounter_MAX_KICKOUT_NUM, info.LargeFlowCounter_voteThreshold,info.LargeFlow_threshold);
+	LFCounter* counter = new LargeFlowCounter(info.IDENTIFY_ROW,info.IDENTIFY_COL,info.IDENTIFY_THRESHOLD, LARGE_FLOW_LFCOUNTER_THRESHOLD);
+	identifier = new LargeFlowIdentifier(counter);
 	reader = new HSNPacketReader();
 	list<string> strList = info.fileList;
 	list<string>::iterator iter;
@@ -68,18 +70,22 @@ bool FMIESketch::add(const Packet & pkt)
 	realCounter->add(fid);	//加到真实的统计器中
 	// 本方案
 	// 1、先在identifier层看一下是否已经存在该流，若已存在则不走过滤层
-
+	bool flag = identifier->incr(fid);
 	// 2、上述不存在的情况下，进行分流
-
 	// 3、根据分流情况，第一部分流走Filter，若到达阈值，则将其加入到identifier层
-	FlowID result;
-	bool flag = filter->Filtering(fid);
-	if (flag) {	// 过滤被踢到了当前
-		identifier->counting(result);
+	if (!flag) {
+		if (rand() % 100 < filterFlowPercent * 100) {
+			bool flag = filter->Filtering(fid);
+			if (flag) {
+				identifier->insert(fid);
+			}
+		}	// 4、第二部分流直接走identifier层
+		else {
+			identifier->insert(fid);
+		}
 	}
-	return true;
-	// 4、第二部分流直接走identifier层
 
+	return true;
 }
 
 void FMIESketch::run()

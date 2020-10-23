@@ -15,6 +15,7 @@ MiniFlowFilter::~MiniFlowFilter() {
 
 bool MiniFlowFilter::Filtering(const FlowID & fid)
 {
+	FlowID result;
 	bool flag = filter->Find(fid,result);
 	if (!flag) {
 		filter->Insert(fid);
