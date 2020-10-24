@@ -110,7 +110,7 @@ BOOL CFMIESkectchDlg::OnInitDialog()
 	setDefaultValue(IDC_IDENTIFY_PKT_NUM, _T("3"));
 	setDefaultValue(IDC_CUCKOO_ROW1, _T("10"));
 	setDefaultValue(IDC_CUCKOO_COL1, _T("4"));
-	setDefaultValue(IDC_CUCKOO_ROW2, _T("9"));
+	setDefaultValue(IDC_CUCKOO_ROW2, _T("10"));
 	setDefaultValue(IDC_CUCKOO_COL2, _T("4"));
 	setDefaultValue(IDC_FILTER_SHRESHOLD, _T("16"));
 	setDefaultValue(IDC_IDENTIFY_ROW, _T("9"));
