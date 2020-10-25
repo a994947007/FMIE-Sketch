@@ -31,7 +31,7 @@ bool HSNPacketReader::readPacket(Packet& pkt)
 			bool bRet = readPacket(f, pkt);
 			if (!bRet)
 			{
-				Log::error("数据包读取错误!");
+				//Log::error("数据包读取错误!");
 				continue;
 			}
 			return true;

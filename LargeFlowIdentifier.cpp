@@ -29,3 +29,8 @@ void LargeFlowIdentifier::getLargeFlowList(list<FlowID*> & flowList)
 {
 	counter->getLargeFlowList(flowList);
 }
+
+void LargeFlowIdentifier::getLargeFlowNumList(list<FlowID*>& flowList, list<ULONG>& numList)
+{
+	counter->getLargeFlowNumList(flowList, numList);
+}

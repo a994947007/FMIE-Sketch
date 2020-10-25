@@ -125,6 +125,18 @@ void LargeFlowCounter::getLargeFlowList(list<FlowID *> & flowList)
 	}
 }
 
+void LargeFlowCounter::getLargeFlowNumList(list<FlowID*>& flowList,list<ULONG> & numList)
+{
+	for (ULONG i = 0; i < ROW_NUM; i++) {
+		for (ULONG j = 0; j < COL_NUM; j++) {
+			if (entryTable[i][j].pVote >= largeFlowThreshold) {
+				flowList.push_back(&entryTable[i][j].fid );
+				numList.push_back(entryTable[i][j].pVote);
+			}
+		}
+	}
+}
+
 bool LargeFlowCounter::isExists(const FlowID& fid)
 {
 	Pair<ULONG, ULONG> position(ULONG_MAX, ULONG_MAX);

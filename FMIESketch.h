@@ -18,7 +18,6 @@ private:
 	MiniFlowFilter * filter;
 	LargeFlowIdentifier * identifier;
 	PacketReader * reader;
-	ResultWriter * writer;
 	RealCounter * realCounter;
 	ULONG readNumLimit;	//限制读取数据包个数
 	double filterFlowPercent;

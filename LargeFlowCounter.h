@@ -71,6 +71,8 @@ public:
 
 	void getLargeFlowList(list<FlowID*> &);
 
+	void getLargeFlowNumList(list<FlowID*>&,list<ULONG> &);
+;
 	bool isExists(const FlowID& fid);
 private:
 	/** 根据fid在表中查找记录

@@ -1,19 +1,29 @@
 #include "pch.h"
 #include "ResultWriter.h"
 #include "config.h"
-#include "fstream"
+#include <string>
 
-ResultWriter::ResultWriter()
+#pragma warning(disable:4996)
+
+ResultWriter::ResultWriter():pFile(NULL)
 {
-    ofFile = new ofstream;
-    ofFile->open(resultPath, ios::app);
+    pFile = fopen(resultPath, "w"); //新建文件
+    if (pFile != NULL) {
+        fclose(pFile);
+    }
+    pFile = fopen(resultPath, "at+");
 }
 
-ResultWriter::ResultWriter(const string filePath)
+ResultWriter::ResultWriter(const char * path)
 {
-    this->filePath = filePath + "/result.txt";
-    ofFile = new ofstream;
-    ofFile->open(filePath, ios::app);
+    char resultPath[200] = {0};
+    strcat(resultPath, path);
+    strcat(resultPath, "/result.txt");
+    pFile = fopen(resultPath, "w"); //新建文件
+    if (pFile != NULL) {
+        fclose(pFile);
+    }
+    pFile = fopen(resultPath, "at+");
 }
 
 ResultWriter::~ResultWriter()
@@ -21,27 +31,28 @@ ResultWriter::~ResultWriter()
     close();
 }
 
-void ResultWriter::write(const string results)
-{
-    *ofFile << results << endl;
-    ofFile->close();
+ResultWriter & ResultWriter::operator<<( const char * result) {
+    fprintf(pFile,"%s", result);
+    return *this;
 }
 
-void ResultWriter::write(const string dst, const string results)
-{
-    ofstream f;
-    f.open(dst, ios::app);
-    f << results << endl;
-    f.close();
-    f.clear();
+ResultWriter& ResultWriter::operator << (const ULONG result) {
+    fprintf(pFile, "%d", result);
+    return *this;
+}
+ResultWriter& ResultWriter::operator << (const double result) {
+    fprintf(pFile, "%lf", result);
+    return *this;
+}
+ResultWriter& ResultWriter::operator << (const float result) {
+    fprintf(pFile, "%f", result);
+    return *this;
 }
 
 void ResultWriter::close()
 {
-    if (ofFile != NULL) {
-        ofFile->close();
-        ofFile->clear();
-        delete ofFile;
-        ofFile = NULL;
+    if (pFile != NULL) {
+        fclose(pFile);
+        pFile = NULL;
     }
 }
