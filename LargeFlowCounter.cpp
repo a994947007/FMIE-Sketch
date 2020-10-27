@@ -41,7 +41,8 @@ bool LargeFlowCounter::insert(const FlowID& fid)
 	// 不存在，则判断当前表是否存在空位置
 	for (ULONG i = 0; i < COL_NUM; i++) {
 		if (entryTable[index][i].isEmpty()) {
-			entryTable[index][i] = fid;
+			entryTable[index][i].fid = fid;
+			entryTable[index][i].pVote = 1;
 			return true;
 		}
 	}
@@ -52,6 +53,67 @@ bool LargeFlowCounter::insert(const FlowID& fid)
 	// 清空小于阈值的槽
 	checkAndReset(index);
 
+	// 将新流加入
+	for (ULONG i = 0; i < COL_NUM; i++) {
+		if (entryTable[index][i].isEmpty()) {
+			entryTable[index][i].fid = fid;
+			entryTable[index][i].pVote = 1;
+			return true;
+		}
+	}
+	return false;
+}
+
+bool LargeFlowCounter::insertAndSetCounter(const FlowID& fid, const ULONG count)
+{
+	Pair<ULONG, ULONG> position(ULONG_MAX, ULONG_MAX);
+	getFlowPosition(fid, position);
+	ULONG index = position.k;
+	ULONG col = position.v;
+
+	// 检查当前流是否已经存在，如果已经存在，则直接正票数+1
+	if (col != ULONG_MAX) {
+		entryTable[index][col].pVote += count;
+		return true;
+	}
+
+	// 不存在，则判断当前表是否存在空位置
+	for (ULONG i = 0; i < COL_NUM; i++) {
+		if (entryTable[index][i].isEmpty()) {
+			entryTable[index][i].fid = fid;
+			entryTable[index][i].pVote = count;
+			return true;
+		}
+	}
+
+	// 不存在空位置，反票+1
+	fVotes[index] ++;
+
+	// 清空小于阈值的槽
+	checkAndReset(index);
+
+	// 将新流加入
+	for (ULONG i = 0; i < COL_NUM; i++) {
+		if (entryTable[index][i].isEmpty()) {
+			entryTable[index][i].fid = fid;
+			entryTable[index][i].pVote = count;
+			return true;
+		}
+	}
+
+	// 新流没有加入成功，则选一个pVote < count的加入
+	ULONG j = ULONG_MAX;
+	ULONG min = ULONG_MAX;
+	for (ULONG i = 0; i < COL_NUM; i++) {
+		if (entryTable[index][i].pVote < count && entryTable[index][i].pVote < min) {
+			min = entryTable[index][i].pVote;
+			j = i;
+		}
+	}
+	if (j != ULONG_MAX) {
+		entryTable[index][j].fid = fid;
+		entryTable[index][j].pVote = count;
+	}
 	return false;
 }
 

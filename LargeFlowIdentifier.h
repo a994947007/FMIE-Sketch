@@ -15,6 +15,8 @@ public:
 	*/
 	void insert(const FlowID & fid);
 
+	bool insertAndSetCounter(const FlowID& fid, const ULONG count);
+
 
 	/**
 	*	³¢ÊÔÔö¼ÓÕıÆ±

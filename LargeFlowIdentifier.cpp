@@ -20,6 +20,10 @@ void LargeFlowIdentifier::insert(const FlowID & fid)
 	counter->insert(fid);
 }
 
+bool LargeFlowIdentifier::insertAndSetCounter(const FlowID& fid, const ULONG count) {
+	return counter->insertAndSetCounter(fid, count);
+}
+
 bool LargeFlowIdentifier::incr(const FlowID& fid)
 {
 	return counter->incr(fid);

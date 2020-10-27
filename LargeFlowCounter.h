@@ -57,6 +57,11 @@ public:
 	*/
 	bool insert(const FlowID &);
 
+	/**
+	*	添加一条流到当前统计器中，并设置计数
+	*/
+	bool insertAndSetCounter(const FlowID&,const ULONG);
+
 	/** 统计所有大量的数量
 	* @param1 满足判定为大流的阈值
 	* @return 大流数量

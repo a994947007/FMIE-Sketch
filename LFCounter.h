@@ -12,6 +12,8 @@ public:
 	* @return 如果没有踢出多余的记录为true，否则为false
 	*/
 	virtual bool insert(const FlowID & fid) = 0;
+
+	virtual bool insertAndSetCounter(const FlowID & fid,const ULONG count) = 0;
 	
 	/** 统计所有大量的数量
 	* @param1 满足判定为大流的阈值
