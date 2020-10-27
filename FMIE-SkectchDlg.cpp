@@ -105,7 +105,7 @@ BOOL CFMIESkectchDlg::OnInitDialog()
 	// TODO: 在此添加额外的初始化代码
 
 	//设置默认参数
-	setDefaultValue(IDC_PACKET_NUM_LIMIT, _T("6"));
+	setDefaultValue(IDC_PACKET_NUM_LIMIT, _T("2000000"));
 	setDefaultValue(IDC_FILTER_PKT_NUM, _T("1"));
 	setDefaultValue(IDC_IDENTIFY_PKT_NUM, _T("3"));
 	setDefaultValue(IDC_CUCKOO_ROW1, _T("10"));
@@ -228,7 +228,7 @@ void CFMIESkectchDlg::OnBnClickedOk()
 		return;
 	}
 
-	m_configInfo.PACKET_NUM_LIMIT = (ULONG)pow(10, getValueByControID<ULONG>(IDC_PACKET_NUM_LIMIT));
+	m_configInfo.PACKET_NUM_LIMIT = getValueByControID<ULONG>(IDC_PACKET_NUM_LIMIT);
 	m_configInfo.FILTER_PKT_NUM = getValueByControID<ULONG>(IDC_FILTER_PKT_NUM);
 	m_configInfo.IDENTIFY_PKT_NUM = getValueByControID<ULONG>(IDC_IDENTIFY_PKT_NUM);
 	m_configInfo.CUCKOO_ROW1 = (ULONG)pow(2, getValueByControID<ULONG>(IDC_CUCKOO_ROW1));
