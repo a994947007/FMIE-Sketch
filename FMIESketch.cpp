@@ -3,7 +3,7 @@
 #include <list>
 
 FMIESketch::FMIESketch(const UserConfig& info) :readNumLimit(info.PACKET_NUM_LIMIT),
-	filterFlowPercent((double)info.FILTER_PKT_NUM/info.FILTER_PKT_NUM + info.IDENTIFY_PKT_NUM)
+	filterFlowPercent((double)info.FILTER_PKT_NUM/(info.FILTER_PKT_NUM + info.IDENTIFY_PKT_NUM))
 {
 	srand(unsigned(time(NULL)));
 	init(info);
