@@ -104,6 +104,7 @@ BOOL CFMIESkectchDlg::OnInitDialog()
 
 	// TODO: 在此添加额外的初始化代码
 
+
 	//设置默认参数
 	setDefaultValue(IDC_PACKET_NUM_LIMIT, _T("2000000"));
 	setDefaultValue(IDC_FILTER_PKT_NUM, _T("1"));
