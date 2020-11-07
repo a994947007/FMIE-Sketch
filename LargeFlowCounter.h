@@ -95,5 +95,7 @@ private:
 	*/
 	void getFlowPosition(const FlowID & fid, Pair<ULONG, ULONG> &);
 
+
+	virtual ULONG getFlowNum(const FlowID& fid);
 };
 

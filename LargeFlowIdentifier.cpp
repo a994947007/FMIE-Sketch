@@ -38,3 +38,8 @@ void LargeFlowIdentifier::getLargeFlowNumList(list<FlowID*>& flowList, list<ULON
 {
 	counter->getLargeFlowNumList(flowList, numList);
 }
+
+ULONG LargeFlowIdentifier::getFlowNum(const FlowID& fid)
+{
+	return counter->getFlowNum(fid);
+}

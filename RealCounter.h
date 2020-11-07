@@ -12,6 +12,7 @@ public:
 
 	void add(const FlowID&);
 	void getLargeFlowList(list<FlowID*> &);
+	void getLargeFlowList(list<FlowID*> &,list<ULONG> &);
 	ULONG getFNum(const FlowID&);
 
 	ULONG getFlowNum();

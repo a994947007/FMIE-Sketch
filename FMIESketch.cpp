@@ -98,6 +98,7 @@ void FMIESketch::run()
 	list<ULONG> flowNumList;
 	identifier->getLargeFlowNumList(flowListMeasure, flowNumList);
 	ULONG judgeNum = flowListMeasure.size();	//判定为大流的数量
+	/*
 	ULONG realLargeFlowNum = 0;	//判定为大流并且真正是大流的数量
 	list<FlowID*>::iterator iter;
 	for (iter = flowListMeasure.begin(); iter != flowListMeasure.end(); iter++)
@@ -112,20 +113,30 @@ void FMIESketch::run()
 	ULONG realFlowNum = realCounter->getFlowNum();
 	ULONG _realLargeFlowNum = realCounter->getLargeFlowNum();	//真实样本中的大流数量
 	ULONG realLargeFlowPacketNum = realCounter->getLargeFlowPacketNum();
+	*/
+
+	list<FlowID*> flowListRealCounter;
+	list<ULONG> flowNumListRealCounter;
+	realCounter->getLargeFlowList(flowListRealCounter, flowNumListRealCounter);
+	ULONG realLargeFlowNum = realCounter->getLargeFlowNum();	//真实样本中的大流数量
+	list<FlowID*>::iterator iter;
+	for (iter = flowListMeasure.begin(); iter != flowListMeasure.end(); iter++)
+	{
+		ULONG fNum = identifier->getFlowNum(**iter);		//实际数量也比阈值大
+	}
 
 	//3、输出结果
  	//writer << "测量大流数量:%d,实际大流数量:%d,测得大流真实为大流的数量:%d",judgeNum, _realLargeFlowNum, realLargeFlowNum);
 	Log::create(logPath);
 	Log::add("测得大流数量:" + to_string(judgeNum) + "\t");
-	Log::add("实际大流数量:" + to_string(_realLargeFlowNum) + "\t");
-	Log::add("测得的大流真正为大流的数量:" + to_string(realLargeFlowNum) + "\n");
+	Log::add("实际大流数量:" + to_string(realLargeFlowNum) + "\t");
 	 
 	list<ULONG>::iterator numIter;
 	Log::add("流编号\t测得数量\t真实数量");
 	ULONG i = 0;
-	for (iter = flowListMeasure.begin(), numIter = flowNumList.begin(); iter != flowListMeasure.end()&&  numIter != flowNumList.end(); iter++,numIter++)
+	for (iter = flowListRealCounter.begin(), numIter = flowNumListRealCounter.begin(); iter != flowListRealCounter.end()&&  numIter != flowNumListRealCounter.end(); iter++,numIter++)
 	{
-		ULONG fNum = realCounter->getFNum(**iter);		//实际数量也比阈值大
-		Log::add("f" + to_string(i++) + "\t" + to_string(*numIter) + "\t" + to_string(fNum));
+		ULONG fNum = identifier->getFlowNum(**iter);		//实际数量也比阈值大
+		Log::add("f" + to_string(i++) + "\t" + to_string(fNum) + "\t" + to_string(*numIter));
 	}
 }

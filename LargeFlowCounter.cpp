@@ -175,6 +175,16 @@ void LargeFlowCounter::getFlowPosition(const FlowID& fid, Pair<ULONG, ULONG> & p
 	}
 }
 
+ULONG LargeFlowCounter::getFlowNum(const FlowID& fid)
+{
+	Pair<ULONG, ULONG> position(ULONG_MAX,ULONG_MAX);
+	getFlowPosition(fid, position);
+	if (position.v != ULONG_MAX) {
+		return entryTable[position.k][position.v].pVote;
+	}
+	return 0;
+}
+
 
 void LargeFlowCounter::getLargeFlowList(list<FlowID *> & flowList)
 {

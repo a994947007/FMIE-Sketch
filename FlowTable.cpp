@@ -68,6 +68,18 @@ void FlowTable::getLargeFlowList(list<FlowID*> & flowList)
 	}
 }
 
+void FlowTable::getLargeFlowList(list<FlowID*> & flowList, list<ULONG> & flowNumList)
+{
+	for (ULONG i = 0; i < hashLen; i++) {
+		for (Node* p = hashTable[i]->next; p != NULL; p = p->next) {
+			if (p->fNum >= largeFlowThreshold) {
+				flowList.push_back(&p->fid);
+				flowNumList.push_back(p->fNum);
+			}
+		}
+	}
+}
+
 ULONG FlowTable::getFNum(const FlowID& key)
 {
 	Node* node = query(key);

@@ -35,4 +35,6 @@ public:
 	virtual	void getLargeFlowNumList(list<FlowID*>&, list<ULONG>&) = 0;
 
 	virtual bool isExists(const FlowID & fid) = 0;
+
+	virtual ULONG getFlowNum(const FlowID& fid) = 0;
 };

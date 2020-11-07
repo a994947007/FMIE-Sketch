@@ -25,6 +25,11 @@ void RealCounter::getLargeFlowList(list<FlowID*> & flowList)
 	flowTable->getLargeFlowList(flowList);
 }
 
+void RealCounter::getLargeFlowList(list<FlowID*>& largeFlowList, list<ULONG> & flowNumList)
+{
+	flowTable->getLargeFlowList(largeFlowList, flowNumList);
+}
+
 ULONG RealCounter::getFNum(const FlowID& key)
 {
 	return flowTable->getFNum(key);

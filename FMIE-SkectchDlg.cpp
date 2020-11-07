@@ -114,7 +114,7 @@ BOOL CFMIESkectchDlg::OnInitDialog()
 	setDefaultValue(IDC_CUCKOO_ROW2, _T("10"));
 	setDefaultValue(IDC_CUCKOO_COL2, _T("4"));
 	setDefaultValue(IDC_FILTER_SHRESHOLD, _T("16"));
-	setDefaultValue(IDC_IDENTIFY_ROW, _T("9"));
+	setDefaultValue(IDC_IDENTIFY_ROW, _T("1024"));
 	setDefaultValue(IDC_IDENTIFY_COL, _T("4"));
 	setDefaultValue(IDC_IDENTIFY_THRESHOLD, _T("5.0"));
 
@@ -237,7 +237,7 @@ void CFMIESkectchDlg::OnBnClickedOk()
 	m_configInfo.CUCKOO_ROW2 = (ULONG)pow(2, getValueByControID<ULONG>(IDC_CUCKOO_ROW2));
 	m_configInfo.CUCKOO_COL2 = getValueByControID<ULONG>(IDC_CUCKOO_COL2);
 	m_configInfo.FILTER_SHRESHOLD = getValueByControID<ULONG>(IDC_FILTER_SHRESHOLD);
-	m_configInfo.IDENTIFY_ROW = (ULONG)pow(2, getValueByControID<ULONG>(IDC_IDENTIFY_ROW));
+	m_configInfo.IDENTIFY_ROW = getValueByControID<ULONG>(IDC_IDENTIFY_ROW);
 	m_configInfo.IDENTIFY_COL = getValueByControID<ULONG>(IDC_IDENTIFY_COL);
 	m_configInfo.IDENTIFY_THRESHOLD = getValueByControID<double>(IDC_IDENTIFY_THRESHOLD);
 	GetDlgItem(IDOK)->EnableWindow(FALSE);
