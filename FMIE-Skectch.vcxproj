@@ -184,6 +184,7 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CMSketch.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="CuckooFilter.h" />
@@ -211,6 +212,7 @@
     <ClInclude Include="UserConfig.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CMSketch.cpp" />
     <ClCompile Include="CuckooFilter.cpp" />
     <ClCompile Include="CUSketch.cpp" />
     <ClCompile Include="FMIE-Skectch.cpp" />

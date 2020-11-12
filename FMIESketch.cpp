@@ -98,22 +98,6 @@ void FMIESketch::run()
 	list<ULONG> flowNumList;
 	identifier->getLargeFlowNumList(flowListMeasure, flowNumList);
 	ULONG judgeNum = flowListMeasure.size();	//判定为大流的数量
-	/*
-	ULONG realLargeFlowNum = 0;	//判定为大流并且真正是大流的数量
-	list<FlowID*>::iterator iter;
-	for (iter = flowListMeasure.begin(); iter != flowListMeasure.end(); iter++)
-	{
-		ULONG fNum = realCounter->getFNum(**iter);		//实际数量也比阈值大
-		if (fNum >= LARGE_FLOW_REAL_THRESHOLD) {
-			realLargeFlowNum++;
-		}
-	}
-	//list<FlowID*> flowListReal;
-	//realCounter->getLargeFlowList(flowListReal);
-	ULONG realFlowNum = realCounter->getFlowNum();
-	ULONG _realLargeFlowNum = realCounter->getLargeFlowNum();	//真实样本中的大流数量
-	ULONG realLargeFlowPacketNum = realCounter->getLargeFlowPacketNum();
-	*/
 
 	list<FlowID*> flowListRealCounter;
 	list<ULONG> flowNumListRealCounter;

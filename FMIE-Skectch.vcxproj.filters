@@ -55,6 +55,12 @@
     <Filter Include="头文件\realCounter">
       <UniqueIdentifier>{28169006-2404-45e8-870b-d9b83ac4fb0f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\cmSketch">
+      <UniqueIdentifier>{334561a1-54ac-4f5a-be7c-03a1b7472a08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\cmSketch">
+      <UniqueIdentifier>{61885d5c-a993-4417-a6cf-dafcba3e19ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FMIE-SkectchDlg.h">
@@ -132,6 +138,9 @@
     <ClInclude Include="LFCounter.h">
       <Filter>头文件\framework\IdentificationLayer</Filter>
     </ClInclude>
+    <ClInclude Include="CMSketch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FMIE-Skectch.cpp">
@@ -184,6 +193,9 @@
     </ClCompile>
     <ClCompile Include="CuckooFilter.cpp">
       <Filter>源文件\framework\filterLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="CMSketch.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
