@@ -10,6 +10,7 @@ CMSketch::CMSketch(ULONG sketchCount, ULONG sketchSize):sketchCount(sketchCount)
 	for (int i = 0; i < sketchCount; i++)
 	{
 		sketchs[i] = new ULONG[sketchSize];
+		memset(sketchs[i], 0, sketchSize * sizeof(ULONG));
 	}
 	srand((unsigned)time(NULL));
 	this->init_h3_matrix();
@@ -26,6 +27,7 @@ CMSketch::~CMSketch() {
 }
 
 bool CMSketch::init_h3_matrix() {
+	this->h3_matrix = new H3_Matrix[sketchCount];
 	for (int i = 0; i < sketchCount; i++) {
 		for (int j = 0; j < 32; j++) {
 			ULONG r = 0;
@@ -43,7 +45,7 @@ bool CMSketch::init_h3_matrix() {
 	return true;
 }
 
-ULONG CMSketch::getFlowNum(FlowID* fid)
+ULONG CMSketch::getFlowNum(const FlowID & fid)
 {
 	UCHAR buf[FID_LEN];
 	((FlowID*)&fid)->ToData(buf);
@@ -61,7 +63,7 @@ ULONG CMSketch::getFlowNum(FlowID* fid)
 	return sketchs[position.k][position.v];
 }
 
-bool CMSketch::insertFlow(FlowID* fid)
+bool CMSketch::insertFlow(const FlowID & fid)
 {
 	UCHAR buf[FID_LEN];
 	((FlowID*)&fid)->ToData(buf);

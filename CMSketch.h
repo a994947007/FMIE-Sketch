@@ -24,7 +24,7 @@ protected:
 public:
 	CMSketch(ULONG sketchCount, ULONG sketchSize);
 	~CMSketch();
-	ULONG getFlowNum(FlowID * fid);
-	bool insertFlow(FlowID * fid);
+	ULONG getFlowNum(const FlowID & fid);
+	bool insertFlow(const FlowID & fid);
 };
 

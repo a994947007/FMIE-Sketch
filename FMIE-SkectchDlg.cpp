@@ -117,6 +117,8 @@ BOOL CFMIESkectchDlg::OnInitDialog()
 	setDefaultValue(IDC_IDENTIFY_ROW, _T("1024"));
 	setDefaultValue(IDC_IDENTIFY_COL, _T("4"));
 	setDefaultValue(IDC_IDENTIFY_THRESHOLD, _T("5.0"));
+	setDefaultValue(IDC_SKETCH_COUNT, _T("3"));
+	setDefaultValue(IDC_SKETCH_SIZE, _T("2048"));
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -240,6 +242,8 @@ void CFMIESkectchDlg::OnBnClickedOk()
 	m_configInfo.IDENTIFY_ROW = getValueByControID<ULONG>(IDC_IDENTIFY_ROW);
 	m_configInfo.IDENTIFY_COL = getValueByControID<ULONG>(IDC_IDENTIFY_COL);
 	m_configInfo.IDENTIFY_THRESHOLD = getValueByControID<double>(IDC_IDENTIFY_THRESHOLD);
+	m_configInfo.SKETCH_COUNT = getValueByControID<ULONG>(IDC_SKETCH_COUNT);
+	m_configInfo.SKETCH_SIZE = getValueByControID<ULONG>(IDC_SKETCH_SIZE);
 	GetDlgItem(IDOK)->EnableWindow(FALSE);
 
 	FMIESketch sketch(m_configInfo);

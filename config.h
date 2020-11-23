@@ -10,3 +10,4 @@ const static ULONG LARGE_FLOW_REAL_THRESHOLD = 500;	//500¸öÊý¾Ý°üÔò±»ÅÐ¶ÏÎª´óÁ÷£
 const static ULONG LARGE_FLOW_LFCOUNTER_THRESHOLD = 500;	// ´óÁ÷Í³¼ÆÆ÷ÖÐÅÐ¶¨Îª´óÁ÷µÄãÐÖµ
 const static ULONG LARGE_FLWO_CMSKETCH_THRESHOLD = 500;		// CMSketchÅÐ¶ÏÎª´óÁ÷µÄãÐÖµ
 static ULONG FILTER_MAX_KICKOUT_NUM;
+

@@ -48,6 +48,9 @@ void FMIESketch::init(const UserConfig & info)
 
 	LFCounter* counter = new LargeFlowCounter(info.IDENTIFY_ROW,info.IDENTIFY_COL,info.IDENTIFY_THRESHOLD, LARGE_FLOW_LFCOUNTER_THRESHOLD);
 	identifier = new LargeFlowIdentifier(counter);
+
+	cmSketch = new CMSketch(info.SKETCH_COUNT, info.SKETCH_SIZE);
+
 	reader = new HSNPacketReader();
 	list<string> strList = info.fileList;
 	list<string>::iterator iter;
@@ -80,6 +83,9 @@ bool FMIESketch::add(const Packet & pkt)
 			identifier->insert(fid);
 		}
 	}
+
+	// 对比方案CMSketch
+	cmSketch->insertFlow(fid);
 
 	return true;
 }
@@ -116,11 +122,12 @@ void FMIESketch::run()
 	Log::add("实际大流数量:" + to_string(realLargeFlowNum) + "\t");
 	 
 	list<ULONG>::iterator numIter;
-	Log::add("流编号\t测得数量\t真实数量");
+	Log::add("流编号\tFMIE测得数量\tCM测得数量\t真实数量");
 	ULONG i = 0;
 	for (iter = flowListRealCounter.begin(), numIter = flowNumListRealCounter.begin(); iter != flowListRealCounter.end()&&  numIter != flowNumListRealCounter.end(); iter++,numIter++)
 	{
 		ULONG fNum = identifier->getFlowNum(**iter);		//实际数量也比阈值大
-		Log::add("f" + to_string(i++) + "\t" + to_string(fNum) + "\t" + to_string(*numIter));
+		ULONG cmFNum = cmSketch->getFlowNum(**iter);
+		Log::add("f" + to_string(i++) + "\t" + to_string(fNum) + "\t" + to_string(cmFNum) + "\t" + to_string(*numIter));
 	}
 }

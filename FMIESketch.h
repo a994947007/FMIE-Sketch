@@ -9,6 +9,7 @@
 #include "LargeFlowIdentifier.h"
 #include "UserConfig.h"
 #include "RealCounter.h"
+#include "CMSketch.h"
 #include "config.h"
 
 
@@ -17,6 +18,7 @@ class FMIESketch
 private:
 	MiniFlowFilter * filter;
 	LargeFlowIdentifier * identifier;
+	CMSketch * cmSketch;
 	PacketReader * reader;
 	RealCounter * realCounter;
 	ULONG readNumLimit;	//限制读取数据包个数
