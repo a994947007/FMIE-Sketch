@@ -118,7 +118,7 @@ BOOL CFMIESkectchDlg::OnInitDialog()
 	setDefaultValue(IDC_IDENTIFY_COL, _T("4"));
 	setDefaultValue(IDC_IDENTIFY_THRESHOLD, _T("5.0"));
 	setDefaultValue(IDC_SKETCH_COUNT, _T("3"));
-	setDefaultValue(IDC_SKETCH_SIZE, _T("2048"));
+	setDefaultValue(IDC_SKETCH_SIZE, _T("16384"));
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }

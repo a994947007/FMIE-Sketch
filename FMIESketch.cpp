@@ -27,6 +27,10 @@ FMIESketch::~FMIESketch()
 		delete realCounter;
 		realCounter = NULL;
 	}
+	if(cmSketch != NULL){
+		delete cmSketch;
+		cmSketch = NULL;
+	}
 }
 
 FlowID FMIESketch::calcFlowID(const UCHAR proto, const EndID& src, const EndID& dst)

@@ -52,7 +52,7 @@ ULONG CMSketch::getFlowNum(const FlowID & fid)
 	ULONG h3_hash = BOB(buf, FID_LEN);
 	ULONG min = ULONG_MAX;
 	Pair<ULONG, ULONG> position(0, 0);
-	for (int i = 0; i < sketchCount; i++) {		// 最小的加，还是都加？如果计数相同怎么办？
+	for (int i = 0; i < sketchCount; i++) {		// 统计时获取最小计数
 		ULONG index = h3_function(32, h3_hash, i) % sketchSize;
 		if (sketchs[i][index] < ULONG_MAX) {
 			min = sketchs[i][index];
@@ -69,16 +69,10 @@ bool CMSketch::insertFlow(const FlowID & fid)
 	((FlowID*)&fid)->ToData(buf);
 	ULONG h3_hash = BOB(buf, FID_LEN);
 	ULONG min = ULONG_MAX;
-	Pair<ULONG, ULONG> position(0, 0);
-	for (int i = 0; i < sketchCount; i++) {		// 最小的加，还是都加？如果计数相同怎么办？
+	for (int i = 0; i < sketchCount; i++) {		// 插入时，所有计数都加1
 		ULONG index = h3_function(32, h3_hash, i) % sketchSize;
-		if (sketchs[i][index] < ULONG_MAX) {
-			min = sketchs[i][index];
-			position.k = i;
-			position.v = index;
-		}
+		sketchs[i][index]++;
 	}
-	sketchs[position.k][position.v] ++;
 	return false;
 }
 
