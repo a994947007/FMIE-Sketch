@@ -71,7 +71,7 @@ bool LargeFlowCounter::insertAndSetCounter(const FlowID& fid, const ULONG count)
 	ULONG index = position.k;
 	ULONG col = position.v;
 
-	// 检查当前流是否已经存在，如果已经存在，则直接正票数+1
+	// 检查当前流是否已经存在，如果已经存在，则直接正票数+count
 	if (col != ULONG_MAX) {
 		entryTable[index][col].pVote += count;
 		return true;
@@ -86,8 +86,8 @@ bool LargeFlowCounter::insertAndSetCounter(const FlowID& fid, const ULONG count)
 		}
 	}
 
-	// 不存在空位置，反票+1
-	fVotes[index] ++;
+	// 不存在空位置，反票+count
+	fVotes[index] += count;
 
 	// 清空小于阈值的槽
 	checkAndReset(index);
