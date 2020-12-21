@@ -20,4 +20,6 @@ public:
 	*	@return	是否插入成功
 	*/
 	virtual bool Insert(const FlowID&) = 0;
+
+	virtual ULONG Find(const FlowID&) = 0;
 };

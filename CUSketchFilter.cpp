@@ -63,3 +63,15 @@ bool CUSketchFilter::Find(const FlowID & fid, FlowID & result)
 	}
 	return true;
 }
+
+ULONG CUSketchFilter::Find(const FlowID&fid)
+{
+	ULONG min = ULONG_MAX;
+	for (ULONG i = 0; i < countersNum; i++) {
+		ULONG index = func[i].compute(fid) % countersSize;
+		if (counters[i][index] < min) {
+			min = counters[i][index];
+		}
+	}
+	return min;
+}

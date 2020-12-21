@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "config.h"
 #include "MiniFlowFilter.h"
 
 MiniFlowFilter::MiniFlowFilter(Filter * filter)
@@ -15,15 +16,12 @@ MiniFlowFilter::~MiniFlowFilter() {
 
 bool MiniFlowFilter::Filtering(const FlowID & fid)
 {
-	FlowID result;
-	bool flag = filter->Find(fid,result);		// 写到这里了
-	if (!flag) {
-		filter->Insert(fid);
+	 ULONG flowNum = filter->Find(fid);	
+	if (flowNum > FLOW_COUNTER_THRESHOLD) {
+		return false;
 	}
 	else {
-		if (!result.isEmpty()) {
-			return true;
-		}
+		filter->Insert(fid);
+		return true;
 	}
-	return false;
 }

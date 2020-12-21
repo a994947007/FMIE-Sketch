@@ -25,5 +25,7 @@ public:
 	virtual bool Insert(const FlowID&);
 
 	virtual bool Find(const FlowID&, FlowID&);
+
+	virtual ULONG Find(const FlowID&);
 };
 

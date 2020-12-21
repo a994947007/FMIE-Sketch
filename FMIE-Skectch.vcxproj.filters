@@ -142,7 +142,7 @@
       <Filter>头文件\cmSketch</Filter>
     </ClInclude>
     <ClInclude Include="CUSketchFilter.h">
-      <Filter>头文件</Filter>
+      <Filter>头文件\framework\filterLayer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -201,7 +201,7 @@
       <Filter>源文件\cmSketch</Filter>
     </ClCompile>
     <ClCompile Include="CUSketchFilter.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\framework\filterLayer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
