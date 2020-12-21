@@ -2,7 +2,8 @@
 #include "CUSketchFilter.h"
 #include "config.h"
 
-CUSketchFilter::CUSketchFilter(const ULONG countersNum, const ULONG countersSize, const ULONG flow_counter_threshold):FLOW_COUNTER_THRESHOLD(flow_counter_threshold)
+CUSketchFilter::CUSketchFilter(const ULONG countersNum, const ULONG countersSize, const ULONG flow_counter_threshold):
+	countersNum(countersNum),countersSize(countersSize),FLOW_COUNTER_THRESHOLD(flow_counter_threshold)
 {
 	counters = new ULONG * [countersNum];
 	for (ULONG i = 0; i < countersNum; i++) {

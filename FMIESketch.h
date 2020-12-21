@@ -24,6 +24,7 @@ private:
 	RealCounter * realCounter;
 	ULONG readNumLimit;	//限制读取数据包个数
 	double filterFlowPercent;
+	CUSketchFilter * cuSketchFilter;
 	//ULONG largeFlowNumThreshold; //判定为大流的阈值
 public:
 	/** FMIESketch默认构造器

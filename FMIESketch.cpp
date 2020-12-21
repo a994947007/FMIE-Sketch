@@ -47,7 +47,7 @@ void FMIESketch::init(const UserConfig & info)
 	ASSERT(!info.fileList.empty());
 
 	FILTER_MAX_KICKOUT_NUM = 2;
-	Filter* cuSketchFilter = new CUSketchFilter(info.CUCKOO_ROW1, info.CUCKOO_COL1,info.FILTER_SHRESHOLD);
+	cuSketchFilter = new CUSketchFilter(info.CUCKOO_COL1, info.CUCKOO_ROW1,info.FILTER_SHRESHOLD);
 	filter = new MiniFlowFilter(cuSketchFilter);
 
 	LFCounter* counter = new LargeFlowCounter(info.IDENTIFY_ROW,info.IDENTIFY_COL,info.IDENTIFY_THRESHOLD, LARGE_FLOW_LFCOUNTER_THRESHOLD);
@@ -107,7 +107,7 @@ void FMIESketch::run()
 	list<FlowID*> flowListMeasure;
 	list<ULONG> flowNumList;
 	identifier->getLargeFlowNumList(flowListMeasure, flowNumList);
-	ULONG judgeNum = flowListMeasure.size();	//判定为大流的数量
+	ULONG judgeNum = 0;	//判定为大流的数量
 
 	list<FlowID*> flowListRealCounter;
 	list<ULONG> flowNumListRealCounter;
@@ -122,16 +122,22 @@ void FMIESketch::run()
 	//3、输出结果
  	//writer << "测量大流数量:%d,实际大流数量:%d,测得大流真实为大流的数量:%d",judgeNum, _realLargeFlowNum, realLargeFlowNum);
 	Log::create(logPath);
-	Log::add("测得大流数量:" + to_string(judgeNum) + "\t");
-	Log::add("实际大流数量:" + to_string(realLargeFlowNum) + "\t");
 	 
 	list<ULONG>::iterator numIter;
 	Log::add("流编号\tFMIE测得数量\tCM测得数量\t真实数量");
 	ULONG i = 0;
 	for (iter = flowListRealCounter.begin(), numIter = flowNumListRealCounter.begin(); iter != flowListRealCounter.end()&&  numIter != flowNumListRealCounter.end(); iter++,numIter++)
 	{
-		ULONG fNum = identifier->getFlowNum(**iter);		//实际数量也比阈值大
-		ULONG cmFNum = cmSketch->getFlowNum(**iter);
-		Log::add("f" + to_string(i++) + "\t" + to_string(fNum) + "\t" + to_string(cmFNum) + "\t" + to_string(*numIter));
+		ULONG iPktNum = identifier->getFlowNum(**iter);		//实际数量也比阈值大
+		ULONG cuPktNum = cuSketchFilter->Find(**iter);
+		ULONG totalFNum = iPktNum+ cuPktNum;
+		if (totalFNum > LARGE_FLOW_REAL_THRESHOLD) {
+			judgeNum++;
+		}
+		ULONG cmPktNum = cmSketch->getFlowNum(**iter);
+		Log::add("f" + to_string(i++) + "\t" + to_string(totalFNum) + "\t" + to_string(cmPktNum) + "\t" + to_string(*numIter));
 	}
+
+	Log::add("测得大流数量:" + to_string(judgeNum) + "\t");
+	Log::add("实际大流数量:" + to_string(realLargeFlowNum) + "\t");
 }
