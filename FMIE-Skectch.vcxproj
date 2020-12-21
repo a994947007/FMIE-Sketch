@@ -189,6 +189,7 @@
     <ClInclude Include="config.h" />
     <ClInclude Include="CuckooFilter.h" />
     <ClInclude Include="CUSketch.h" />
+    <ClInclude Include="CUSketchFilter.h" />
     <ClInclude Include="Filter.h" />
     <ClInclude Include="FMIE-Skectch.h" />
     <ClInclude Include="FMIE-SkectchDlg.h" />
@@ -215,6 +216,7 @@
     <ClCompile Include="CMSketch.cpp" />
     <ClCompile Include="CuckooFilter.cpp" />
     <ClCompile Include="CUSketch.cpp" />
+    <ClCompile Include="CUSketchFilter.cpp" />
     <ClCompile Include="FMIE-Skectch.cpp" />
     <ClCompile Include="FMIE-SkectchDlg.cpp" />
     <ClCompile Include="FMIESketch.cpp" />

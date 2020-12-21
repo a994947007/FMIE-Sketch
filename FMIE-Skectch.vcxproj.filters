@@ -141,6 +141,9 @@
     <ClInclude Include="CMSketch.h">
       <Filter>头文件\cmSketch</Filter>
     </ClInclude>
+    <ClInclude Include="CUSketchFilter.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="FMIE-Skectch.cpp">
@@ -196,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="CMSketch.cpp">
       <Filter>源文件\cmSketch</Filter>
+    </ClCompile>
+    <ClCompile Include="CUSketchFilter.cpp">
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

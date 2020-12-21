@@ -47,8 +47,8 @@ void FMIESketch::init(const UserConfig & info)
 	ASSERT(!info.fileList.empty());
 
 	FILTER_MAX_KICKOUT_NUM = info.FILTER_SHRESHOLD;
-	Filter* cuckooFilter = new CuckooFilter(info.CUCKOO_ROW1,info.CUCKOO_COL1,info.CUCKOO_ROW2,info.CUCKOO_COL2, KICK_OUT_NUM,info.FILTER_SHRESHOLD);
-	filter = new MiniFlowFilter(cuckooFilter);
+	Filter* cuSketchFilter = new CUSketchFilter(info.CUCKOO_ROW1, info.CUCKOO_COL1,info.FILTER_SHRESHOLD);
+	filter = new MiniFlowFilter(cuSketchFilter);
 
 	LFCounter* counter = new LargeFlowCounter(info.IDENTIFY_ROW,info.IDENTIFY_COL,info.IDENTIFY_THRESHOLD, LARGE_FLOW_LFCOUNTER_THRESHOLD);
 	identifier = new LargeFlowIdentifier(counter);

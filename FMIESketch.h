@@ -10,6 +10,7 @@
 #include "UserConfig.h"
 #include "RealCounter.h"
 #include "CMSketch.h"
+#include "CUSketchFilter.h"
 #include "config.h"
 
 

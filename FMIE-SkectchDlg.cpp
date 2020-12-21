@@ -111,8 +111,6 @@ BOOL CFMIESkectchDlg::OnInitDialog()
 	setDefaultValue(IDC_IDENTIFY_PKT_NUM, _T("3"));
 	setDefaultValue(IDC_CUCKOO_ROW1, _T("10"));
 	setDefaultValue(IDC_CUCKOO_COL1, _T("4"));
-	setDefaultValue(IDC_CUCKOO_ROW2, _T("10"));
-	setDefaultValue(IDC_CUCKOO_COL2, _T("4"));
 	setDefaultValue(IDC_FILTER_SHRESHOLD, _T("16"));
 	setDefaultValue(IDC_IDENTIFY_ROW, _T("1024"));
 	setDefaultValue(IDC_IDENTIFY_COL, _T("4"));
@@ -236,8 +234,6 @@ void CFMIESkectchDlg::OnBnClickedOk()
 	m_configInfo.IDENTIFY_PKT_NUM = getValueByControID<ULONG>(IDC_IDENTIFY_PKT_NUM);
 	m_configInfo.CUCKOO_ROW1 = (ULONG)pow(2, getValueByControID<ULONG>(IDC_CUCKOO_ROW1));
 	m_configInfo.CUCKOO_COL1 = getValueByControID<ULONG>(IDC_CUCKOO_COL1);
-	m_configInfo.CUCKOO_ROW2 = (ULONG)pow(2, getValueByControID<ULONG>(IDC_CUCKOO_ROW2));
-	m_configInfo.CUCKOO_COL2 = getValueByControID<ULONG>(IDC_CUCKOO_COL2);
 	m_configInfo.FILTER_SHRESHOLD = getValueByControID<ULONG>(IDC_FILTER_SHRESHOLD);
 	m_configInfo.IDENTIFY_ROW = getValueByControID<ULONG>(IDC_IDENTIFY_ROW);
 	m_configInfo.IDENTIFY_COL = getValueByControID<ULONG>(IDC_IDENTIFY_COL);
