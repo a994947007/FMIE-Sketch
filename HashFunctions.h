@@ -4,6 +4,7 @@
 
 uint32_t BOB(uint8_t*, uint16_t);
 uint32_t OAAT(uint8_t*, uint16_t);
+uint32_t OAAT(const FlowID & fid);
 uint32_t TWMX(uint8_t*, uint16_t);
 uint32_t RS(uint8_t*, uint16_t);
 uint32_t Hsieh(uint8_t*, uint16_t);

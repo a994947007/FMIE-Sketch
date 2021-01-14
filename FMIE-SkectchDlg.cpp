@@ -107,11 +107,11 @@ BOOL CFMIESkectchDlg::OnInitDialog()
 
 	//设置默认参数
 	setDefaultValue(IDC_PACKET_NUM_LIMIT, _T("2000000"));
-	setDefaultValue(IDC_FILTER_PKT_NUM, _T("1"));
-	setDefaultValue(IDC_IDENTIFY_PKT_NUM, _T("3"));
-	setDefaultValue(IDC_CUCKOO_ROW1, _T("10"));
-	setDefaultValue(IDC_CUCKOO_COL1, _T("4"));
-	setDefaultValue(IDC_FILTER_SHRESHOLD, _T("16"));
+	setDefaultValue(IDC_FILTER_PKT_NUM, _T("5"));
+	setDefaultValue(IDC_IDENTIFY_PKT_NUM, _T("1"));
+	setDefaultValue(IDC_CUCKOO_ROW1, _T("8192"));
+	setDefaultValue(IDC_CUCKOO_COL1, _T("2"));
+	setDefaultValue(IDC_FILTER_SHRESHOLD, _T("4"));
 	setDefaultValue(IDC_IDENTIFY_ROW, _T("1024"));
 	setDefaultValue(IDC_IDENTIFY_COL, _T("4"));
 	setDefaultValue(IDC_IDENTIFY_THRESHOLD, _T("5.0"));
@@ -232,7 +232,7 @@ void CFMIESkectchDlg::OnBnClickedOk()
 	m_configInfo.PACKET_NUM_LIMIT = getValueByControID<ULONG>(IDC_PACKET_NUM_LIMIT);
 	m_configInfo.FILTER_PKT_NUM = getValueByControID<ULONG>(IDC_FILTER_PKT_NUM);
 	m_configInfo.IDENTIFY_PKT_NUM = getValueByControID<ULONG>(IDC_IDENTIFY_PKT_NUM);
-	m_configInfo.CUCKOO_ROW1 = (ULONG)pow(2, getValueByControID<ULONG>(IDC_CUCKOO_ROW1));
+	m_configInfo.CUCKOO_ROW1 = getValueByControID<ULONG>(IDC_CUCKOO_ROW1);
 	m_configInfo.CUCKOO_COL1 = getValueByControID<ULONG>(IDC_CUCKOO_COL1);
 	m_configInfo.FILTER_SHRESHOLD = getValueByControID<ULONG>(IDC_FILTER_SHRESHOLD);
 	m_configInfo.IDENTIFY_ROW = getValueByControID<ULONG>(IDC_IDENTIFY_ROW);

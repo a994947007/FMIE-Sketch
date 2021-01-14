@@ -27,6 +27,7 @@ LargeFlowCounter::~LargeFlowCounter()
 
 bool LargeFlowCounter::insert(const FlowID& fid)
 {
+	ULONG sign = OAAT(fid);
 	Pair<ULONG, ULONG> position(ULONG_MAX,ULONG_MAX);
 	getFlowPosition(fid, position);
 	ULONG index = position.k;
@@ -41,7 +42,7 @@ bool LargeFlowCounter::insert(const FlowID& fid)
 	// 不存在，则判断当前表是否存在空位置
 	for (ULONG i = 0; i < COL_NUM; i++) {
 		if (entryTable[index][i].isEmpty()) {
-			entryTable[index][i].fid = fid;
+			entryTable[index][i].sign = sign;
 			entryTable[index][i].pVote = 1;
 			return true;
 		}
@@ -56,7 +57,7 @@ bool LargeFlowCounter::insert(const FlowID& fid)
 	// 将新流加入
 	for (ULONG i = 0; i < COL_NUM; i++) {
 		if (entryTable[index][i].isEmpty()) {
-			entryTable[index][i].fid = fid;
+			entryTable[index][i].sign = sign;
 			entryTable[index][i].pVote = 1;
 			return true;
 		}
@@ -66,6 +67,7 @@ bool LargeFlowCounter::insert(const FlowID& fid)
 
 bool LargeFlowCounter::insertAndSetCounter(const FlowID& fid, const ULONG count)
 {
+	ULONG sign = OAAT(fid);
 	Pair<ULONG, ULONG> position(ULONG_MAX, ULONG_MAX);
 	getFlowPosition(fid, position);
 	ULONG index = position.k;
@@ -80,7 +82,7 @@ bool LargeFlowCounter::insertAndSetCounter(const FlowID& fid, const ULONG count)
 	// 不存在，则判断当前表是否存在空位置
 	for (ULONG i = 0; i < COL_NUM; i++) {
 		if (entryTable[index][i].isEmpty()) {
-			entryTable[index][i].fid = fid;
+			entryTable[index][i].sign = sign;
 			entryTable[index][i].pVote = count;
 			return true;
 		}
@@ -95,7 +97,7 @@ bool LargeFlowCounter::insertAndSetCounter(const FlowID& fid, const ULONG count)
 	// 将新流加入
 	for (ULONG i = 0; i < COL_NUM; i++) {
 		if (entryTable[index][i].isEmpty()) {
-			entryTable[index][i].fid = fid;
+			entryTable[index][i].sign = sign;
 			entryTable[index][i].pVote = count;
 			return true;
 		}
@@ -111,7 +113,7 @@ bool LargeFlowCounter::insertAndSetCounter(const FlowID& fid, const ULONG count)
 		}
 	}
 	if (j != ULONG_MAX) {
-		entryTable[index][j].fid = fid;
+		entryTable[index][j].sign = sign;
 		entryTable[index][j].pVote = count;
 	}
 	return false;
@@ -163,12 +165,13 @@ bool LargeFlowCounter::checkAndReset(ULONG index)
 
 void LargeFlowCounter::getFlowPosition(const FlowID& fid, Pair<ULONG, ULONG> & pair)
 {
+	ULONG sign = OAAT(fid);
 	UCHAR buf[FID_LEN];
 	((FlowID*)&fid)->ToData(buf);
 	ULONG index = BOB(buf, FID_LEN) % ROW_NUM;
 	pair.k = index;
 	for (ULONG i = 0; i < COL_NUM; i++) {
-		if (entryTable[index][i].fid == fid) {
+		if (entryTable[index][i].sign == sign) {
 			pair.v = i;
 			break;
 		}
@@ -186,23 +189,23 @@ ULONG LargeFlowCounter::getFlowNum(const FlowID& fid)
 }
 
 
-void LargeFlowCounter::getLargeFlowList(list<FlowID *> & flowList)
+void LargeFlowCounter::getLargeFlowList(list<ULONG> & flowList)
 {
 	for (ULONG i = 0; i < ROW_NUM; i++) {
 		for (ULONG j = 0; j < COL_NUM; j++) {
 			if (entryTable[i][j].pVote >= largeFlowThreshold) {
-				flowList.push_back(&entryTable[i][j].fid);
+				flowList.push_back(entryTable[i][j].sign);
 			}
 		}
 	}
 }
 
-void LargeFlowCounter::getLargeFlowNumList(list<FlowID*>& flowList,list<ULONG> & numList)
+void LargeFlowCounter::getLargeFlowNumList(list<ULONG>& flowList,list<ULONG> & numList)
 {
 	for (ULONG i = 0; i < ROW_NUM; i++) {
 		for (ULONG j = 0; j < COL_NUM; j++) {
 			if (entryTable[i][j].pVote >= largeFlowThreshold) {
-				flowList.push_back(&entryTable[i][j].fid );
+				flowList.push_back(entryTable[i][j].sign );
 				numList.push_back(entryTable[i][j].pVote);
 			}
 		}

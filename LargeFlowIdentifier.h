@@ -26,9 +26,9 @@ public:
 	/** 获取大流集合
 	* @return 大流集合
 	*/
-	void getLargeFlowList(list<FlowID*> &);
+	void getLargeFlowList(list<ULONG> &);
 
-	void getLargeFlowNumList(list<FlowID*>&, list<ULONG>&);
+	void getLargeFlowNumList(list<ULONG>&, list<ULONG>&);
 
 	ULONG getFlowNum(const FlowID & fid);
 };

@@ -30,9 +30,9 @@ public:
 	/** 获取当前大流统计器中的所有大流
 	* @param1 大流容器
 	*/
-	virtual void getLargeFlowList(list<FlowID*>& container) = 0;
+	virtual void getLargeFlowList(list<ULONG>& container) = 0;
 
-	virtual	void getLargeFlowNumList(list<FlowID*>&, list<ULONG>&) = 0;
+	virtual	void getLargeFlowNumList(list<ULONG>&, list<ULONG>&) = 0;
 
 	virtual bool isExists(const FlowID & fid) = 0;
 

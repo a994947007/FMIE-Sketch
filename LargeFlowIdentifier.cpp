@@ -29,12 +29,12 @@ bool LargeFlowIdentifier::incr(const FlowID& fid)
 	return counter->incr(fid);
 }
 
-void LargeFlowIdentifier::getLargeFlowList(list<FlowID*> & flowList)
+void LargeFlowIdentifier::getLargeFlowList(list<ULONG> & flowList)
 {
 	counter->getLargeFlowList(flowList);
 }
 
-void LargeFlowIdentifier::getLargeFlowNumList(list<FlowID*>& flowList, list<ULONG>& numList)
+void LargeFlowIdentifier::getLargeFlowNumList(list<ULONG>& flowList, list<ULONG>& numList)
 {
 	counter->getLargeFlowNumList(flowList, numList);
 }

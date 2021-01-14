@@ -2,34 +2,38 @@
 #include "Log.h"
 #include "common.h"
 #include "LFCounter.h"
+#include "HashFunctions.h"
 #include <list>
 
 class LargeFlowCounter : public LFCounter
 {
 private:
 	typedef struct Entry {
-		FlowID fid;		//fid
+		//FlowID fid;		//fid
+		ULONG sign;		// 签名
 		ULONG pVote;	//正票数
 		//ULONG fVote;	//反票数
-		Entry():pVote(0) {}
+		Entry():sign(0),pVote(0) {}
 
-		Entry(const FlowID & fid):fid(fid), pVote(0){}
+		Entry(const FlowID & fid): pVote(0){
+			sign = OAAT(fid);
+		}
 
 		//重载=运算符，拷贝函数
 		inline Entry & operator=(const Entry& entry) {
-			fid = entry.fid;
+			sign = entry.sign;
 			pVote = entry.pVote;
 			return *this;
 		}
 
 		//判断当前项是否为空
 		inline bool isEmpty() {
-			return fid.isEmpty() && pVote == 0;
+			return sign == 0 && pVote == 0;
 		}
 
 		//清空当前项
 		inline bool reset() {
-			fid.reset();
+			sign = 0;
 			pVote = 0;
 			return true;
 		}
@@ -74,9 +78,9 @@ public:
 	*/
 	bool incr(const FlowID& fid);
 
-	void getLargeFlowList(list<FlowID*> &);
+	void getLargeFlowList(list<ULONG> &);
 
-	void getLargeFlowNumList(list<FlowID*>&,list<ULONG> &);
+	void getLargeFlowNumList(list<ULONG>&,list<ULONG> &);
 ;
 	bool isExists(const FlowID& fid);
 private:

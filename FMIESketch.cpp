@@ -104,7 +104,7 @@ void FMIESketch::run()
 		if (flag)countNum++;
 	}
 	//2、计算指标
-	list<FlowID*> flowListMeasure;
+	list<ULONG> flowListMeasure;
 	list<ULONG> flowNumList;
 	identifier->getLargeFlowNumList(flowListMeasure, flowNumList);
 	ULONG judgeNum = 0;	//判定为大流的数量
@@ -113,11 +113,7 @@ void FMIESketch::run()
 	list<ULONG> flowNumListRealCounter;
 	realCounter->getLargeFlowList(flowListRealCounter, flowNumListRealCounter);
 	ULONG realLargeFlowNum = realCounter->getLargeFlowNum();	//真实样本中的大流数量
-	list<FlowID*>::iterator iter;
-	for (iter = flowListMeasure.begin(); iter != flowListMeasure.end(); iter++)
-	{
-		ULONG fNum = identifier->getFlowNum(**iter);		//实际数量也比阈值大
-	}
+
 
 	//3、输出结果
  	//writer << "测量大流数量:%d,实际大流数量:%d,测得大流真实为大流的数量:%d",judgeNum, _realLargeFlowNum, realLargeFlowNum);
@@ -126,10 +122,13 @@ void FMIESketch::run()
 	list<ULONG>::iterator numIter;
 	Log::add("流编号\tFMIE测得数量\tCM测得数量\t真实数量");
 	ULONG i = 0;
+
+	list<FlowID*>::iterator iter;
 	for (iter = flowListRealCounter.begin(), numIter = flowNumListRealCounter.begin(); iter != flowListRealCounter.end()&&  numIter != flowNumListRealCounter.end(); iter++,numIter++)
 	{
 		ULONG iPktNum = identifier->getFlowNum(**iter);		//实际数量也比阈值大
-		ULONG cuPktNum = cuSketchFilter->Find(**iter);
+	//	ULONG cuPktNum = cuSketchFilter->Find(**iter);
+		ULONG cuPktNum = 0;
 		ULONG totalFNum = iPktNum+ cuPktNum;
 		if (totalFNum > LARGE_FLOW_REAL_THRESHOLD) {
 			judgeNum++;

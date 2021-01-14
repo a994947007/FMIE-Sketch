@@ -83,6 +83,14 @@ uint32_t OAAT(uint8_t* buf, uint16_t len)
 	return hash;
 }
 
+uint32_t OAAT(const FlowID& fid)
+{
+	UCHAR buf[FID_LEN];
+	((FlowID*)&fid)->ToData(buf);
+	uint32_t sign = OAAT(buf, FID_LEN);
+	return sign;
+}
+
 /*Thomas Wang's MIX hash function*/
 uint32_t TWM1(uint32_t key)
 {
