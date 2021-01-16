@@ -47,8 +47,9 @@ void FMIESketch::init(const UserConfig & info)
 	ASSERT(!info.fileList.empty());
 
 	FILTER_MAX_KICKOUT_NUM = 2;
+	FLOW_COUNTER_THRESHOLD = info.FILTER_SHRESHOLD;
 	cuSketchFilter = new CUSketchFilter(info.CUCKOO_COL1, info.CUCKOO_ROW1,info.FILTER_SHRESHOLD);
-	filter = new MiniFlowFilter(cuSketchFilter);
+	filter = new MiniFlowFilter(cuSketchFilter, info.FILTER_SHRESHOLD);
 
 	LFCounter* counter = new LargeFlowCounter(info.IDENTIFY_ROW,info.IDENTIFY_COL,info.IDENTIFY_THRESHOLD, LARGE_FLOW_LFCOUNTER_THRESHOLD);
 	identifier = new LargeFlowIdentifier(counter);
@@ -80,7 +81,7 @@ bool FMIESketch::add(const Packet & pkt)
 		if (rand() % 100 < filterFlowPercent * 100) {
 			bool flag = filter->Filtering(fid);
 			if (!flag) {
-				identifier->insertAndSetCounter(fid, FILTER_MAX_KICKOUT_NUM);
+				identifier->insertAndSetCounter(fid, FLOW_COUNTER_THRESHOLD);
 			}
 		}	// 4、第二部分流直接走identifier层
 		else {

@@ -6,12 +6,14 @@
 class MiniFlowFilter
 {
 private:
+	ULONG MIN_FLOW_THRESHOLD;
 	Filter * filter;
 public:
 	/** 小流过滤器构造器
 	* @arg1  filter构造器参数
 	*/
 	MiniFlowFilter(Filter * filter);
+	MiniFlowFilter(Filter* filter, ULONG minFlowThreshold);
 	~MiniFlowFilter();
 	/** 小流过滤器
 	* @arg1 fid 流连接标识符(五元组)

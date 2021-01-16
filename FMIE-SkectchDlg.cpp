@@ -114,7 +114,7 @@ BOOL CFMIESkectchDlg::OnInitDialog()
 	setDefaultValue(IDC_FILTER_SHRESHOLD, _T("4"));
 	setDefaultValue(IDC_IDENTIFY_ROW, _T("1024"));
 	setDefaultValue(IDC_IDENTIFY_COL, _T("4"));
-	setDefaultValue(IDC_IDENTIFY_THRESHOLD, _T("5.0"));
+	setDefaultValue(IDC_IDENTIFY_THRESHOLD, _T("20.0"));
 	setDefaultValue(IDC_SKETCH_COUNT, _T("3"));
 	setDefaultValue(IDC_SKETCH_SIZE, _T("16384"));
 
