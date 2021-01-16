@@ -107,7 +107,7 @@ BOOL CFMIESkectchDlg::OnInitDialog()
 
 	//设置默认参数
 	setDefaultValue(IDC_PACKET_NUM_LIMIT, _T("2000000"));
-	setDefaultValue(IDC_FILTER_PKT_NUM, _T("2"));
+	setDefaultValue(IDC_FILTER_PKT_NUM, _T("5"));
 	setDefaultValue(IDC_IDENTIFY_PKT_NUM, _T("1"));
 	setDefaultValue(IDC_CUCKOO_ROW1, _T("8192"));
 	setDefaultValue(IDC_CUCKOO_COL1, _T("2"));
